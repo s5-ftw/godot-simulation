@@ -9,7 +9,7 @@ var sensor_amount: int
 var adapter_type: String
 
 func _init(
-	distance_between_sensors=0.0,
+	distance_between_sensors=180,
 	sensor_amount=5,
 	adapter_type_value="none"
 ):

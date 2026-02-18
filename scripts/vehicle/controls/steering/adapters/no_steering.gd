@@ -6,7 +6,7 @@ extends SteeringAdapter
 
 ## Will always return the center value.
 func get_current() -> float:
-	return self.config.real_center
+	return 0
 
 ## Doesn't do shit dawg
 func set_steering(new: float) -> void:
