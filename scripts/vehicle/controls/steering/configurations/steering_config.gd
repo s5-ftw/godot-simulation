@@ -10,13 +10,17 @@ var real_minimum: float
 ## Stepper motors take steps to increase. How much are these?
 var step_size: float
 
+var adapter_type: String
+
 func _init(
-	real_middle=0.0,
-	real_maximum=1.0,
-	real_minimum=-1.0,
-	step_size=0.0
+	real_middle_value=0.0,
+	real_maximum_value=1.0,
+	real_minimum_value=-1.0,
+	step_size_value=0.0,
+	adapter_type_value="none"
 ):
-	self.real_middle = real_middle
-	self.real_maximum = real_maximum
-	self.real_minimum = real_minimum
-	self.step_size = step_size
+	self.real_middle = real_middle_value
+	self.real_maximum = real_maximum_value
+	self.real_minimum = real_minimum_value
+	self.step_size = step_size_value
+	self.adapter_type = adapter_type_value
