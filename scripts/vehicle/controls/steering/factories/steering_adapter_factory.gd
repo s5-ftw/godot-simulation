@@ -1,5 +1,5 @@
-## Decides the proper distance sensor to build, from given configurations.
-## This project only has the SRF05
+## Decides the steering adapter to build, from given configurations.
+## This decides how the line sensor is read. Simulated? or real one?
 class_name SteeringAdapterFactory
 extends RefCounted
 
