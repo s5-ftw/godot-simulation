@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d1snkvvda4vrh"
-path="res://.godot/imported/plaquette_blender_scale.blend-6bfaeb7920288dd54fcc84c538dd5cff.scn"
+uid="uid://cchrmlon8vgwi"
+path="res://.godot/imported/PiCar-col.blend-314cb8c0aba675a70b6429a09d5276e8.scn"
 
 [deps]
 
-source_file="res://assets/plaquette_blender_scale.blend"
-dest_files=["res://.godot/imported/plaquette_blender_scale.blend-6bfaeb7920288dd54fcc84c538dd5cff.scn"]
+source_file="res://assets/PiCar/PiCar-col.blend"
+dest_files=["res://.godot/imported/PiCar-col.blend-314cb8c0aba675a70b6429a09d5276e8.scn"]
 
 [params]
 
@@ -17,7 +17,7 @@ nodes/root_type=""
 nodes/root_name=""
 nodes/root_script=null
 nodes/apply_root_scale=true
-nodes/root_scale=1.0
+nodes/root_scale=0.00999999999999999
 nodes/import_as_skeleton_bones=false
 nodes/use_name_suffixes=true
 nodes/use_node_type_suffixes=true
@@ -37,7 +37,16 @@ import_script/path=""
 materials/extract=0
 materials/extract_format=0
 materials/extract_path=""
-_subresources={}
+_subresources={
+"nodes": {
+"PATH:Empty": {
+"import/skip_import": true
+},
+"PATH:Empty_001": {
+"import/skip_import": true
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true
