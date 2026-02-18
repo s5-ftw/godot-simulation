@@ -5,5 +5,5 @@ class_name NoFilter
 ##
 ## @param raw: Unfiltered distance from a simulated or real sensor.
 ## @return raw directly returned.
-func filter(raw: float) -> float:
+func apply(raw: float) -> float:
 	return raw
