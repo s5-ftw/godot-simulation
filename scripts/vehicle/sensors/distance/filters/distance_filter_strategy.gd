@@ -1,5 +1,5 @@
 extends RefCounted
-class_name DistanceSensorFilterStrategy
+class_name DistanceFilterStrategy
 
 ## Abstract (interface) definition of a filtering strategy for the distance sensor.
 ##

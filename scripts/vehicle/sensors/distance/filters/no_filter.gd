@@ -1,4 +1,4 @@
-extends DistanceSensorFilterStrategy
+extends DistanceFilterStrategy
 class_name NoFilter
 
 ## Returns the raw value as is, not filtered or altered at all.
