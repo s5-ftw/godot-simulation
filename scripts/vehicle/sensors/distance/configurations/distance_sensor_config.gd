@@ -6,8 +6,10 @@ var max_distance: float
 var poll_interval: float
 var adapter_type: String
 var filter_type: String
+var sensor_type: String
 
 func _init(
+	sensor_type="SRF05",
 	adapter_type="none",
 	filter_strategy="none",
 	min_distance=0.0,
@@ -19,3 +21,4 @@ func _init(
 	self.poll_interval = poll_interval
 	self.adapter_type = adapter_type
 	self.filter_type = filter_strategy
+	self.sensor_type = sensor_type
