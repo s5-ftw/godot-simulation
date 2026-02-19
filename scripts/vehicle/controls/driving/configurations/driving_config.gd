@@ -3,7 +3,7 @@ extends RefCounted
 
 ## What's the top ratio we're willing to go to?
 var real_maximum: float
-var real_mininimum: float
+var real_minimum: float
 ## There's some advantages having the stopped speed not being 0.
 var real_stopped: float
 

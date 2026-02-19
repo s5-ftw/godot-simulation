@@ -11,7 +11,7 @@ var adapter_type: String
 func _init(
 	distance_between_sensors=180,
 	sensor_amount=5,
-	adapter_type_value="none"
+	adapter_type="none"
 ):
 	self.distance_between_sensors = distance_between_sensors
 	self.sensor_amount = sensor_amount

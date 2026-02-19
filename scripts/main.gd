@@ -15,6 +15,7 @@ func _process(delta):
 # Signals functions
 func _on_quit_pressed():
 	$NetworkFSM.current_state = $NetworkFSM/NetworkClosingConnectionState
+	var config = ConfigSingleton.get_instance()
 	get_tree().quit()
 
 func _on_connect_pressed():

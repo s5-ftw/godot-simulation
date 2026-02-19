@@ -11,7 +11,7 @@ var sensor_type: String
 func _init(
 	sensor_type="SRF05",
 	adapter_type="none",
-	filter_strategy="none",
+	filter_type="none",
 	min_distance=0.0,
 	max_distance=6942069.0,
 	poll_interval=0
@@ -20,5 +20,5 @@ func _init(
 	self.max_distance = max_distance
 	self.poll_interval = poll_interval
 	self.adapter_type = adapter_type
-	self.filter_type = filter_strategy
+	self.filter_type = filter_type
 	self.sensor_type = sensor_type
