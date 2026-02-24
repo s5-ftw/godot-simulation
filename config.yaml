@@ -1,5 +1,5 @@
 distance_sensor:
-  adapter_type: "simulated"
+  adapter_type: "none"
   min_distance: -67
   max_distance: 420
   poll_interval: 60
@@ -9,17 +9,17 @@ distance_sensor:
 line_sensor:
   distance_between_sensors: 69
   sensor_amount: 67
-  adapter_type: "simulated"
+  adapter_type: "none"
 
 steering:
   real_middle: 0
   real_maximum: 420
   real_minimum: -67
   step_size: 1
-  adapter_type: "simulated"
+  adapter_type: "none"
 
 driving:
   real_maximum: 10
   real_minimum: -10
   real_stopped: 67
-  adapter_type: "simulated"
+  adapter_type: "none"
