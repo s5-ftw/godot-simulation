@@ -1,18 +1,22 @@
 [gd_scene format=3 uid="uid://bk5l7umgip4v5"]
 
-[ext_resource type="Script" uid="uid://tq58jihq45r4" path="res://scripts/main.gd" id="1_eka3w"]
-[ext_resource type="Script" uid="uid://xfwg5cs2hgt0" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="2_wl1fq"]
-[ext_resource type="Script" uid="uid://xo6c22v7fla4" path="res://scripts/fsm/NetworkInitState.gd" id="3_lglb8"]
-[ext_resource type="Script" uid="uid://ohex7sfx3l0p" path="res://scripts/fsm/NetworkWaitingState.gd" id="4_s7v0d"]
-[ext_resource type="Script" uid="uid://bxh02m00uaty3" path="res://scripts/fsm/NetworkConnectingState.gd" id="5_itktg"]
-[ext_resource type="Script" uid="uid://bc4g0fv1b3qge" path="res://scripts/fsm/NetworkProcessState.gd" id="6_017ts"]
-[ext_resource type="PackedScene" uid="uid://cchrmlon8vgwi" path="res://assets/PiCar/PiCar-col.blend" id="8_5vw27"]
-[ext_resource type="PackedScene" uid="uid://xroxh5wjbwp6" path="res://line_follower_sensor.tscn" id="9_a0528"]
+[ext_resource type="Script" uid="uid://tq58jihq45r4" path="res://scripts/main.gd" id="1_fhi4q"]
+[ext_resource type="Script" uid="uid://xfwg5cs2hgt0" path="res://addons/finite_state_machine/scripts/finite_state_machine.gd" id="2_buc8b"]
+[ext_resource type="Script" uid="uid://xo6c22v7fla4" path="res://scripts/fsm/NetworkInitState.gd" id="3_gp3on"]
+[ext_resource type="Script" uid="uid://ohex7sfx3l0p" path="res://scripts/fsm/NetworkWaitingState.gd" id="4_uv8cf"]
+[ext_resource type="Script" uid="uid://bxh02m00uaty3" path="res://scripts/fsm/NetworkConnectingState.gd" id="5_wi8me"]
+[ext_resource type="Script" uid="uid://bc4g0fv1b3qge" path="res://scripts/fsm/NetworkProcessState.gd" id="6_7de2g"]
+[ext_resource type="PackedScene" uid="uid://xroxh5wjbwp6" path="res://line_follower_sensor.tscn" id="7_u3vry"]
+[ext_resource type="Script" uid="uid://bxcdtlqtsg7va" path="res://pi_caar_mouvement.gd" id="8_f1yy7"]
+[ext_resource type="PackedScene" uid="uid://cchrmlon8vgwi" path="res://assets/PiCar/PiCar-col.blend" id="9_ouxva"]
 
 [sub_resource type="GDScript" id="GDScript_d2gei"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2p80"]
 albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_5vw27"]
+data = PackedVector3Array(-2.5, -0.25, 2.5, -2.5, -0.25, -2.5, -2.5, 0.25, -2.5, 2.5, -0.25, -2.5, -2.5, -0.25, -2.5, -2.5, -0.25, 2.5, -2.5, 0.25, -2.5, -2.5, -0.25, -2.5, 2.5, -0.25, -2.5, -2.5, 0.25, -2.5, -2.5, 0.25, 2.5, -2.5, -0.25, 2.5, -2.5, -0.25, 2.5, -2.5, 0.25, 2.5, 2.5, 0.25, 2.5, 2.5, 0.25, 2.5, -2.5, 0.25, 2.5, -2.5, 0.25, -2.5, -2.5, -0.25, 2.5, 2.5, -0.25, 2.5, 2.5, -0.25, -2.5, 2.5, 0.25, 2.5, 2.5, -0.25, 2.5, -2.5, -0.25, 2.5, 2.5, -0.25, -2.5, 2.5, -0.25, 2.5, 2.5, 0.25, 2.5, 2.5, -0.25, -2.5, 2.5, 0.25, -2.5, -2.5, 0.25, -2.5, -2.5, 0.25, -2.5, 2.5, 0.25, -2.5, 2.5, 0.25, 2.5, 2.5, 0.25, 2.5, 2.5, 0.25, -2.5, 2.5, -0.25, -2.5)
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jv41d"]
 sky_top_color = Color(0.635294, 0.756863, 0.901961, 1)
@@ -29,28 +33,28 @@ sky = SubResource("Sky_nfout")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iys2i"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kek77"]
-size = Vector3(1, 0.7686157, 2.3041992)
+[sub_resource type="BoxShape3D" id="BoxShape3D_5vw27"]
+size = Vector3(1, 0.5852051, 2.0996094)
 
 [node name="Main" type="Node3D" unique_id=74298755]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100098, 0.0284071, -0.0135775)
-script = ExtResource("1_eka3w")
+script = ExtResource("1_fhi4q")
 
 [node name="NetworkFSM" type="Node" parent="." unique_id=2126661592 node_paths=PackedStringArray("current_state")]
-script = ExtResource("2_wl1fq")
+script = ExtResource("2_buc8b")
 current_state = NodePath("NetworkWaitingState")
 
 [node name="NetworkInitState" type="Node" parent="NetworkFSM" unique_id=1694866097]
-script = ExtResource("3_lglb8")
+script = ExtResource("3_gp3on")
 
 [node name="NetworkWaitingState" type="Node" parent="NetworkFSM" unique_id=341158985]
-script = ExtResource("4_s7v0d")
+script = ExtResource("4_uv8cf")
 
 [node name="NetworkConnectingState" type="Node" parent="NetworkFSM" unique_id=2144089887]
-script = ExtResource("5_itktg")
+script = ExtResource("5_wi8me")
 
 [node name="NetworkProcessState" type="Node" parent="NetworkFSM" unique_id=1155796152]
-script = ExtResource("6_017ts")
+script = ExtResource("6_7de2g")
 
 [node name="NetworkDisconnectingState" type="Node" parent="NetworkFSM" unique_id=1248672262]
 script = SubResource("GDScript_d2gei")
@@ -59,6 +63,11 @@ script = SubResource("GDScript_d2gei")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053, -0.25, -0.027)
 size = Vector3(5, 0.5, 5)
 material = SubResource("StandardMaterial3D_y2p80")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=210312725]
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=1427706316]
+shape = SubResource("ConcavePolygonShape3D_5vw27")
 
 [node name="PiCar#RayCast3D" type="RayCast3D" parent="." unique_id=1781413472]
 transform = Transform3D(-7.39508e-06, 1, 0, -1, -7.39508e-06, 0, 0, 0, 1, 0, 0.048, 0)
@@ -69,7 +78,7 @@ hit_from_inside = true
 transform = Transform3D(-4.37114e-08, -0.258819, 0.965926, 0, 0.965926, 0.258819, -1, 1.13133e-08, -4.2222e-08, 2, 1, 0)
 current = true
 
-[node name="PiCar#line_follower_sensor" parent="." unique_id=1217243279 instance=ExtResource("9_a0528")]
+[node name="PiCar#line_follower_sensor" parent="." unique_id=1217243279 instance=ExtResource("7_u3vry")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.166544, 0.0646156, 0.00079032)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=891664719]
@@ -112,7 +121,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33023, 0.0713751, 0.100219)
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Bille" type="RigidBody3D" parent="." unique_id=792547708]
-transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, 1.99787, 0.205514, -0.300465)
+transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, 1.0165294, 1.3689198, -0.300465)
 mass = 0.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bille" unique_id=1594745531]
@@ -120,18 +129,19 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 shape = SubResource("SphereShape3D_iys2i")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Bille" unique_id=339587353]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -2.8308835, 0.7472555, 0.29751232)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 radial_segments = 32
 rings = 32
 
 [node name="PiCar#RigidBody3D" type="RigidBody3D" parent="." unique_id=1484986761]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82016015, 0.8129575, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82016015, 1.2272904, 0)
+script = ExtResource("8_f1yy7")
 
-[node name="PiCar-col" parent="PiCar#RigidBody3D" unique_id=481795064 instance=ExtResource("8_5vw27")]
+[node name="PiCar-col" parent="PiCar#RigidBody3D" unique_id=481795064 instance=ExtResource("9_ouxva")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PiCar#RigidBody3D" unique_id=1169251411]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.32461548, 0.6520996)
-shape = SubResource("BoxShape3D_kek77")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PiCar#RigidBody3D" unique_id=354888403]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.48937988, 0.5498047)
+shape = SubResource("BoxShape3D_5vw27")
 
 [connection signal="toggled" from="GridContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="pressed" from="GridContainer/btn_Connect" to="." method="_on_connect_pressed"]
