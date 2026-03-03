@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bxh02m00uaty3" path="res://scripts/fsm/NetworkConnectingState.gd" id="5_wi8me"]
 [ext_resource type="Script" uid="uid://bc4g0fv1b3qge" path="res://scripts/fsm/NetworkProcessState.gd" id="6_7de2g"]
 [ext_resource type="PackedScene" uid="uid://xroxh5wjbwp6" path="res://line_follower_sensor.tscn" id="7_u3vry"]
-[ext_resource type="Script" uid="uid://bxcdtlqtsg7va" path="res://pi_caar_mouvement.gd" id="8_f1yy7"]
+[ext_resource type="Script" uid="uid://bxcdtlqtsg7va" path="res://scripts/CarMouvement/pi_caar_mouvement.gd" id="9_fhi4q"]
 [ext_resource type="PackedScene" uid="uid://cchrmlon8vgwi" path="res://assets/PiCar/PiCar-col.blend" id="9_ouxva"]
 
 [sub_resource type="GDScript" id="GDScript_d2gei"]
@@ -32,9 +32,6 @@ background_mode = 2
 sky = SubResource("Sky_nfout")
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iys2i"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_5vw27"]
-size = Vector3(1, 0.5852051, 2.0996094)
 
 [node name="Main" type="Node3D" unique_id=74298755]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0100098, 0.0284071, -0.0135775)
@@ -133,15 +130,9 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 radial_segments = 32
 rings = 32
 
-[node name="PiCar#RigidBody3D" type="RigidBody3D" parent="." unique_id=1484986761]
+[node name="PiCar-col" parent="." unique_id=481795064 instance=ExtResource("9_ouxva")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82016015, 1.2272904, 0)
-script = ExtResource("8_f1yy7")
-
-[node name="PiCar-col" parent="PiCar#RigidBody3D" unique_id=481795064 instance=ExtResource("9_ouxva")]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PiCar#RigidBody3D" unique_id=354888403]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.48937988, 0.5498047)
-shape = SubResource("BoxShape3D_5vw27")
+script = ExtResource("9_fhi4q")
 
 [connection signal="toggled" from="GridContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="pressed" from="GridContainer/btn_Connect" to="." method="_on_connect_pressed"]
