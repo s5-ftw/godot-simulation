@@ -4,7 +4,7 @@ extends Node3D
 @export var max_speed = 10.0
 @export var acceleration = 5.0
 @export var decceleration = 4.0
-@export var turn_speed = 0.5
+@export var turn_speed = 0.25
 
 func _process(delta: float) -> void:
 	# Turning

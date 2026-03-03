@@ -7,8 +7,7 @@
 [ext_resource type="Script" uid="uid://bxh02m00uaty3" path="res://scripts/fsm/NetworkConnectingState.gd" id="5_wi8me"]
 [ext_resource type="Script" uid="uid://bc4g0fv1b3qge" path="res://scripts/fsm/NetworkProcessState.gd" id="6_7de2g"]
 [ext_resource type="PackedScene" uid="uid://xroxh5wjbwp6" path="res://line_follower_sensor.tscn" id="7_u3vry"]
-[ext_resource type="Script" uid="uid://bxcdtlqtsg7va" path="res://scripts/CarMouvement/pi_caar_mouvement.gd" id="9_fhi4q"]
-[ext_resource type="PackedScene" uid="uid://cchrmlon8vgwi" path="res://assets/PiCar/PiCar-col.blend" id="9_ouxva"]
+[ext_resource type="PackedScene" uid="uid://iqnl5kmt40oi" path="res://assets/Prefabs/PiCar_prefab.tscn" id="8_ngkjk"]
 
 [sub_resource type="GDScript" id="GDScript_d2gei"]
 
@@ -126,16 +125,8 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 radial_segments = 32
 rings = 32
 
-[node name="CarPivot" type="Node3D" parent="." unique_id=346857963]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.008655, 0)
-script = ExtResource("9_fhi4q")
-
-[node name="PiCar-col" parent="CarPivot" unique_id=481795064 instance=ExtResource("9_ouxva")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.4)
-
-[node name="PiCar#Camera3D" type="Camera3D" parent="CarPivot/PiCar-col" unique_id=522607979]
-transform = Transform3D(1, 0, 0, 0, 0.9396927, 0.34202015, 0, -0.34202015, 0.9396927, 0, 1.1935565, 2.798)
-current = true
+[node name="PiCar" parent="." unique_id=1710354306 instance=ExtResource("8_ngkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9327881, 2.3469329e-07, 1.2721432)
 
 [connection signal="toggled" from="GridContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="pressed" from="GridContainer/btn_Connect" to="." method="_on_connect_pressed"]

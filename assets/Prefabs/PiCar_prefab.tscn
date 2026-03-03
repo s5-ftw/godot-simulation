@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://iqnl5kmt40oi"]
+
+[ext_resource type="Script" uid="uid://bxcdtlqtsg7va" path="res://scripts/CarMouvement/pi_caar_mouvement.gd" id="1_nlbmv"]
+[ext_resource type="PackedScene" uid="uid://cchrmlon8vgwi" path="res://assets/PiCar/PiCar-col.blend" id="2_130py"]
+
+[node name="PiCar" type="Node3D" unique_id=1710354306]
+
+[node name="PiCar_Prefab" type="Node3D" parent="." unique_id=1868942273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.008655, 0)
+script = ExtResource("1_nlbmv")
+
+[node name="PiCar-col" parent="PiCar_Prefab" unique_id=481795064 instance=ExtResource("2_130py")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.4)
+
+[node name="PiCar#Camera3D" type="Camera3D" parent="PiCar_Prefab/PiCar-col" unique_id=351074889]
+transform = Transform3D(1, 0, 0, 0, 0.9396927, 0.34202015, 0, -0.34202015, 0.9396927, 0, 1.1935565, 2.798)
+current = true
