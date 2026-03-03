@@ -8,6 +8,9 @@ static func create(config: LineSensorConfig) -> LineSensorAdapter:
 	match config.adapter_type:
 		"none":
 			return NoLineSensor.new(config)
+		"simulated":
+			var adapter = Simulated5LineSensor.new(config)
+			return
 		_:
 			push_error("Unknown line sensor adapter")
 			return null
