@@ -5,13 +5,25 @@ extends Node3D
 @export var acceleration = 5.0
 @export var decceleration = acceleration
 @export var turn_speed = 0.25
+@export var max_wheel_angle = 30.0
+
+@onready var wheel_fl = $WheelFrontLeft
+@onready var wheel_fr = $WheelFrontRight
+var steer_angle = 0.0
 
 func _process(delta: float) -> void:
 	# Turning
 	if Input.is_key_pressed(KEY_A):
 		rotate_y(turn_speed * speed * delta)
-	if Input.is_key_pressed(KEY_D):
+		steer_angle = deg_to_rad(max_wheel_angle)
+	elif Input.is_key_pressed(KEY_D):
 		rotate_y(-turn_speed * speed * delta)
+		steer_angle = deg_to_rad(-max_wheel_angle)
+	else:
+		steer_angle = 0
+		
+	wheel_fl.rotation.y = steer_angle
+	wheel_fr.rotation.y = steer_angle
 	
 	# Acceleration
 	if Input.is_key_pressed(KEY_W):
