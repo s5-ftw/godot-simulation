@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://bxh02m00uaty3" path="res://scripts/fsm/NetworkConnectingState.gd" id="5_wi8me"]
 [ext_resource type="Script" uid="uid://bc4g0fv1b3qge" path="res://scripts/fsm/NetworkProcessState.gd" id="6_7de2g"]
 [ext_resource type="PackedScene" uid="uid://xroxh5wjbwp6" path="res://line_follower_sensor.tscn" id="7_u3vry"]
-[ext_resource type="PackedScene" uid="uid://iqnl5kmt40oi" path="res://assets/Prefabs/PiCar_prefab.tscn" id="8_ngkjk"]
+[ext_resource type="PackedScene" uid="uid://dtci3hi25ejuu" path="res://assets/Prefabs/pi_car_prefab.tscn" id="8_ngkjk"]
 
 [sub_resource type="GDScript" id="GDScript_d2gei"]
 
@@ -125,8 +125,12 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 radial_segments = 32
 rings = 32
 
-[node name="PiCar" parent="." unique_id=1710354306 instance=ExtResource("8_ngkjk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9327881, 2.3469329e-07, 1.2721432)
+[node name="PiCar-col" parent="." unique_id=1483979899 instance=ExtResource("8_ngkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9535548, 0.6884347, -0.10617786)
+
+[node name="PiCar#Camera3D" type="Camera3D" parent="PiCar-col" unique_id=230118704]
+transform = Transform3D(1, 0, 0, 0, 0.9396927, 0.34202015, 0, -0.34202015, 0.9396927, 0, 1.207882, 3.0704694)
+current = true
 
 [connection signal="toggled" from="GridContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="pressed" from="GridContainer/btn_Connect" to="." method="_on_connect_pressed"]
