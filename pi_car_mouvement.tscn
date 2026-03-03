@@ -71,10 +71,6 @@ transform = Transform3D(-7.39508e-06, 1, 0, -1, -7.39508e-06, 0, 0, 0, 1, 0, 0.0
 target_position = Vector3(0, -0.8, 0)
 hit_from_inside = true
 
-[node name="PiCar#Camera3D" type="Camera3D" parent="." unique_id=522607979]
-transform = Transform3D(-4.37114e-08, -0.258819, 0.965926, 0, 0.965926, 0.258819, -1, 1.13133e-08, -4.2222e-08, 2, 1, 0)
-current = true
-
 [node name="PiCar#line_follower_sensor" parent="." unique_id=1217243279 instance=ExtResource("7_u3vry")]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.166544, 0.0646156, 0.00079032)
 
@@ -130,9 +126,16 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 radial_segments = 32
 rings = 32
 
-[node name="PiCar-col" parent="." unique_id=481795064 instance=ExtResource("9_ouxva")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82016015, 1.2272904, 0)
+[node name="CarPivot" type="Node3D" parent="." unique_id=346857963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.008655, 0)
 script = ExtResource("9_fhi4q")
+
+[node name="PiCar-col" parent="CarPivot" unique_id=481795064 instance=ExtResource("9_ouxva")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.4)
+
+[node name="PiCar#Camera3D" type="Camera3D" parent="CarPivot/PiCar-col" unique_id=522607979]
+transform = Transform3D(1, 0, 0, 0, 0.9396927, 0.34202015, 0, -0.34202015, 0.9396927, 0, 1.1935565, 2.798)
+current = true
 
 [connection signal="toggled" from="GridContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="pressed" from="GridContainer/btn_Connect" to="." method="_on_connect_pressed"]
