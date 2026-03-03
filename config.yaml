@@ -9,7 +9,7 @@ distance_sensor:
 line_sensor:
   distance_between_sensors: 69
   sensor_amount: 67
-  adapter_type: "none"
+  adapter_type: "simulated"
 
 steering:
   real_middle: 0
