@@ -16,6 +16,7 @@ func _ready():
 	# Vehicle creation logic and debug assignments
 	manager = VehicleFactory.create("SunFounder PiCar")
 	manager.bind_debug_ui(debug_ui_container)
+	manager.adapters.line_sensor.bind(line_sensor_area.get_child(0))
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
