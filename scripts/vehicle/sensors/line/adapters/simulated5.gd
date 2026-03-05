@@ -53,7 +53,7 @@ func _create_debug_ui_row(text: String, grid: GridContainer, indicators: Array[C
 	for i in range(self.config.sensor_amount):
 		var rect = ColorRect.new()
 		rect.custom_minimum_size = Vector2(20, 20)
-		rect.color = off_color # Default "off" state
+		rect.color = off_color
 		container.add_child(rect)
 		indicators.append(rect)
 	
