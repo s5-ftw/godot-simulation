@@ -1,5 +1,5 @@
 ## Adapter that returns the value from a simulated raycast.
-class_name Simulated5LineSensor
+class_name SimulatedLineSensor
 extends LineSensorAdapter
 
 var _real_ui_indicators: Array[ColorRect] = []
@@ -16,7 +16,7 @@ var _on_read_indicator_color: Color = Color.BLUE
 ## @returns integer of bits representing sensor state. Returns 0 if not bound.
 func read() -> int:
 	if _sensor_area == null:
-		push_warning("Simulated5LineSensor: not bound to an Area3D. Call bind() first.")
+		push_warning("SimulatedLineSensor: not bound to an Area3D. Call bind() first.")
 		return 0
 
 	var result := 0
@@ -24,17 +24,20 @@ func read() -> int:
 
 	for i in arr.size():
 		if arr[i]:
+			_read_ui_indicators[i].color = self._on_read_indicator_color
 			result |= (1 << i)
+		else:
+			_read_ui_indicators[i].color = self._off_read_indicator_color
 
 	return result
 
 func bind(area: Area3D) -> void:
-	print("Line sensor area bound to Simulated 5 Sensor array")
+	print("Area bound to SimulatedLineSensor")
 	_sensor_area = area
 	_sensor_area.connect("line_follower_changed", Callable(self, "real_updated"))
 	_setup_raycast(
 		self.config.cone_radius,
-		0.05,
+		0.1,
 		self.config.distance_between_sensors,
 		self.config.cone_height
 	)
@@ -48,7 +51,7 @@ func real_updated(index: int, newArray: PackedByteArray) -> void:
 
 func _setup_raycast(width: float, height: float, spacing: float, length: float = 1.0) -> void:
 	if _sensor_area == null:
-		push_warning("Simulated5LineSensor: bind sensor area before setup.")
+		push_warning("SimulatedLineSensor: bind sensor area before setup.")
 		return
 	
 	# Remove existing RayCast3D nodes
