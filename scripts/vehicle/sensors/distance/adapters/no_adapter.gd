@@ -5,7 +5,7 @@ extends DistanceSensorAdapter
 class_name NoDistanceSensor
 
 ## Warning, always returns 0.
-## @returns millimeters
+## @returns centimeters
 func read() -> float:
 	return self.config.min_distance
 

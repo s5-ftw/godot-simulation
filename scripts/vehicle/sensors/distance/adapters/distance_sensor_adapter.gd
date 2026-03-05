@@ -14,9 +14,9 @@ func _init(
 	self.config = config
 
 ## Obtains a distance from the distance sensor. Delays may vary.
-## Distances must be in MILLIMETERS.
+## Distances must be in CENTIMETERS.
 ##
-## @returns millimeters
+## @returns centimeters
 func read() -> float:
 	push_error("read() must be implemented in the distance sensor adapter")
 	return 0.0

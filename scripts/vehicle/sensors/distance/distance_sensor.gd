@@ -19,9 +19,9 @@ func _init(
 	_adapter = adapter
 	_old_raw_value = 0
 
-## Obtain the amount of milimeters the distance sensor is currently reading,
+## Obtain the amount of centimeters the distance sensor is currently reading,
 ## assuming it's ready for you to read it.
-## if it's not ready, the old value is simply given back to ou.
+## if it's not ready, the old value is simply given back to you.
 func read() -> float:
 	if _adapter.is_ready():
 		_old_raw_value = _adapter.read()
