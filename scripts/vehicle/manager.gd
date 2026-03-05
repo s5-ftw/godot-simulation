@@ -26,16 +26,28 @@ func bind_debug_ui(container: GridContainer)-> void:
 
 		if typeof(member) == TYPE_OBJECT and member != null:
 			print("- ", property_name)
-			if member.has_method("_bind_debug_ui"):
-				_add_debug_column_header(container)
-				var grid_container = GridContainer.new()
-				grid_container.custom_minimum_size = Vector2(10, 10)
-				grid_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-				member._bind_debug_ui(grid_container)
-				container.add_child(grid_container)
-				print("Debug UI created for: ", property_name)
+			if !member.has_method("_bind_debug_ui"):
+				continue
+
+			var config = member.get("config")
+			if config == null:
+				push_error("adapter with _bind_debug_ui has no config variable: ", property_name)
+				continue
+
+			if config.ui_debug != true:
+				print("\t ui_debug in config not set to true")
+				continue
+
+			_add_debug_column_header(container)
+			var grid_container = GridContainer.new()
+			grid_container.custom_minimum_size = Vector2(10, 10)
+			grid_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			member._bind_debug_ui(grid_container)
+			container.add_child(grid_container)
+			print("Debug UI created for: ", property_name)
 
 func _add_debug_column_header(container: GridContainer) -> void:
+	print("Adapter debug column has childrens")
 	if self._was_added: return
 	self._was_added = true
 	

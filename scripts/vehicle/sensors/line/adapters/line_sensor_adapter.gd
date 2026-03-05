@@ -18,6 +18,12 @@ func _init(
 func bind(area: Area3D) -> void:
 	_sensor_area = area
 
+func _bind_debug_ui(container: GridContainer) -> void:
+	## ui_debug config element checked by the manager when binding debugs.
+	## internal checks additions only necessary if bypassing everything for tests.
+	push_error("_create_debug_ui() must be implemented in the line sensor adapter")
+	return
+
 ## Obtains the current steering value in ratio.
 ## This is simply because it's easier to use in maths as a ratio as convertion
 ## is easy to do. Only a multiplication is required. You should NEVER convert
