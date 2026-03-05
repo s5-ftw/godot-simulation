@@ -2,12 +2,6 @@
 class_name Simulated5LineSensor
 extends LineSensorAdapter
 
-var _sensor_area: Area3D
-
-## Call this after instantiation to bind the adapter to the Area3D sensor node.
-func bind(area: Area3D) -> void:
-	_sensor_area = area
-
 ## Reads the 5-sensor array from the Area3D and packs it into an integer.
 ## Bit layout (LSB first): bit 0 = sensor 0, bit 4 = sensor 4.
 ## Example: sensors [0,1,0,1,0] → 0b01010 → 10
