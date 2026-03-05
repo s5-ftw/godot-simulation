@@ -22,8 +22,6 @@ func _bind_debug_ui(container: GridContainer) -> void:
 	label.text = "No Line sensor adapter"
 	label.add_theme_font_size_override("font_size", 12)
 	
-	# 4. SET EXPANSION FLAGS
-	# This tells the GridContainer: "Give this child as much room as possible"
 	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	label.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	
