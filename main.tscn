@@ -75,6 +75,8 @@ environment = SubResource("Environment_c8ocf")
 offset_left = 3.0
 offset_right = 320.0
 offset_bottom = 89.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
 columns = 2
 
 [node name="CheckBox" type="CheckBox" parent="GridContainer" unique_id=904777169]
@@ -107,6 +109,11 @@ text = "Quit"
 layout_mode = 2
 text = "Test"
 
+[node name="GridContainer" type="GridContainer" parent="GridContainer" unique_id=98919512]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=73628796]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33023, 0.0713751, 0.100219)
 size = Vector3(0.1, 0.1, 0.1)
@@ -123,6 +130,18 @@ shape = SubResource("SphereShape3D_iys2i")
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.0329106, 0)
 radial_segments = 32
 rings = 32
+
+[node name="DebugElementContainer" type="GridContainer" parent="." unique_id=517806483]
+offset_left = 1796.0
+offset_right = 1920.2378
+offset_bottom = 209.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="LineSensorContainer" type="GridContainer" parent="DebugElementContainer" unique_id=1798561323]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
 
 [connection signal="toggled" from="GridContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="pressed" from="GridContainer/btn_Connect" to="." method="_on_connect_pressed"]
