@@ -58,7 +58,7 @@ func bind_debug_ui(container: GridContainer)-> void:
 			print("Debug UI created for: ", property_name)
 
 func _add_debug_column_header(container: GridContainer) -> void:
-	print("Adapter debug column has childrens")
+	print("Adding header to adapter UI debug")
 	if self._was_added: return
 	self._was_added = true
 	
