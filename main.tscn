@@ -13,6 +13,9 @@
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2p80"]
 albedo_color = Color(1, 0, 1, 1)
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_272bh"]
+data = PackedVector3Array(-2.5, -0.088134766, 2.5, -2.5, -0.088134766, -2.5, -2.5, 0.088134766, -2.5, 2.5, -0.088134766, -2.5, -2.5, -0.088134766, -2.5, -2.5, -0.088134766, 2.5, -2.5, 0.088134766, -2.5, -2.5, -0.088134766, -2.5, 2.5, -0.088134766, -2.5, -2.5, 0.088134766, -2.5, -2.5, 0.088134766, 2.5, -2.5, -0.088134766, 2.5, -2.5, -0.088134766, 2.5, -2.5, 0.088134766, 2.5, 2.5, 0.088134766, 2.5, 2.5, 0.088134766, 2.5, -2.5, 0.088134766, 2.5, -2.5, 0.088134766, -2.5, -2.5, -0.088134766, 2.5, 2.5, -0.088134766, 2.5, 2.5, -0.088134766, -2.5, 2.5, 0.088134766, 2.5, 2.5, -0.088134766, 2.5, -2.5, -0.088134766, 2.5, 2.5, -0.088134766, -2.5, 2.5, -0.088134766, 2.5, 2.5, 0.088134766, 2.5, 2.5, -0.088134766, -2.5, 2.5, 0.088134766, -2.5, -2.5, 0.088134766, -2.5, -2.5, 0.088134766, -2.5, 2.5, 0.088134766, -2.5, 2.5, 0.088134766, 2.5, 2.5, 0.088134766, 2.5, 2.5, 0.088134766, -2.5, 2.5, -0.088134766, -2.5)
+
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jv41d"]
 sky_top_color = Color(0.635294, 0.756863, 0.901961, 1)
 sky_horizon_color = Color(0.839216, 0.890196, 0.929412, 1)
@@ -52,9 +55,14 @@ script = ExtResource("6_017ts")
 script = SubResource("GDScript_d2gei")
 
 [node name="Floor" type="CSGBox3D" parent="." unique_id=34957347]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053, -0.25, -0.027)
-size = Vector3(5, 0.5, 5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053, -0.095243275, -0.027)
+size = Vector3(5, 0.17626953, 5)
 material = SubResource("StandardMaterial3D_y2p80")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor" unique_id=518720273]
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=329782603]
+shape = SubResource("ConcavePolygonShape3D_272bh")
 
 [node name="PiCar#RayCast3D" type="RayCast3D" parent="." unique_id=233748759]
 transform = Transform3D(-7.39508e-06, 1, 0, -1, -7.39508e-06, 0, 0, 0, 1, 0, 0.048, 0)
@@ -66,7 +74,7 @@ transform = Transform3D(-4.37114e-08, -0.25881898, 0.9659259, 0, 0.9659259, 0.25
 current = true
 
 [node name="PiCar#line_follower_sensor" parent="." unique_id=1907020829 instance=ExtResource("9_a0528")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.1044278, 0.82666624, 0.00079032034)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 1.1044278, 0.37642962, 0.00079032034)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=919986856]
 environment = SubResource("Environment_c8ocf")
@@ -119,11 +127,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33023, 0.0713751, 0.100219)
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="Bille" type="RigidBody3D" parent="." unique_id=1896210039]
-transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, 1.99787, 0.205514, -0.300465)
+transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, 0.88422495, 0.205514, -0.300465)
 mass = 0.1
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bille" unique_id=1513013125]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, -0.03286755, 0)
 shape = SubResource("SphereShape3D_iys2i")
 
 [node name="CSGSphere3D" type="CSGSphere3D" parent="Bille" unique_id=806548743]

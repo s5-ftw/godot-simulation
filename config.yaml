@@ -7,9 +7,11 @@ distance_sensor:
   sensor_type: "SRF05"
 
 line_sensor:
-  distance_between_sensors: 69
-  sensor_amount: 6
+  distance_between_sensors: 0.5
+  sensor_amount: 5
   adapter_type: "simulated"
+  cone_radius: 0.1
+  cone_height: 0.1
   ui_debug: true
 
 steering:
