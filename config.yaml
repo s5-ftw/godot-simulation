@@ -7,7 +7,7 @@ distance_sensor:
   sensor_type: "SRF05"
 
 line_sensor:
-  distance_between_sensors: 0.5
+  distance_between_sensors: 0.180
   sensor_amount: 5
   adapter_type: "simulated"
   cone_radius: 0.1
