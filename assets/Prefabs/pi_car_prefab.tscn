@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://dtci3hi25ejuu"]
 
-[ext_resource type="Script" uid="uid://bxcdtlqtsg7va" path="res://scripts/CarMouvement/pi_caar_mouvement.gd" id="1_ru1ef"]
+[ext_resource type="Script" uid="uid://bxcdtlqtsg7va" path="res://scripts/CarMouvement/pi_car_mouvement.gd" id="1_ru1ef"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4yvbj"]
 
