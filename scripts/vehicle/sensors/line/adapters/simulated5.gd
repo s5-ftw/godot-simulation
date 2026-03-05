@@ -2,6 +2,14 @@
 class_name Simulated5LineSensor
 extends LineSensorAdapter
 
+var _real_ui_indicators: Array[ColorRect] = []
+var _read_ui_indicators: Array[ColorRect] = []
+
+var _off_real_indicator_color: Color = Color.DARK_GREEN
+var _off_read_indicator_color: Color = Color.DARK_BLUE
+var _on_real_indicator_color: Color = Color.GREEN
+var _on_read_indicator_color: Color = Color.BLUE
+
 ## Reads the 5-sensor array from the Area3D and packs it into an integer.
 ## Bit layout (LSB first): bit 0 = sensor 0, bit 4 = sensor 4.
 ## Example: sensors [0,1,0,1,0] → 0b01010 → 10
@@ -26,18 +34,27 @@ func _bind_debug_ui(container: GridContainer) -> void:
 	for child in container.get_children():
 		child.queue_free()
 	
-	## Setup for centered text
-	container.columns = 1
-
+	## The drawing setup is 2 rows 2 columns.
+	## One identifies what's actually read
+	## The other identifies what was last read
+	var layout = GridContainer.new()
+	layout.columns = 2
+	
+	_create_debug_ui_row("read", layout, self._read_ui_indicators, self._off_read_indicator_color)
+	_create_debug_ui_row("real", layout, self._real_ui_indicators, self._off_real_indicator_color)
+	container.add_child(layout)
+	
+func _create_debug_ui_row(text: String, grid: GridContainer, indicators: Array[ColorRect], off_color: Color) -> void:
+	var container = HBoxContainer.new()
 	var label = Label.new()
-	label.text = "This works"
-	label.add_theme_font_size_override("font_size", 12)
+	label.text = text
+	grid.add_child(label)
 	
-	# 4. SET EXPANSION FLAGS
-	# This tells the GridContainer: "Give this child as much room as possible"
-	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	label.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	for i in range(self.config.sensor_amount):
+		var rect = ColorRect.new()
+		rect.custom_minimum_size = Vector2(20, 20)
+		rect.color = off_color # Default "off" state
+		container.add_child(rect)
+		indicators.append(rect)
 	
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	container.add_child(label)
+	grid.add_child(container)
