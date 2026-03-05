@@ -15,16 +15,8 @@ func _init(
 	self.config = config
 
 ## Call this after instantiation to bind the adapter to the Area3D sensor node.
-func bind(area: Area3D, ui_container: GridContainer = null) -> void:
+func bind(area: Area3D) -> void:
 	_sensor_area = area
-	if ui_container:
-		_setup_debug_ui(ui_container)
-		
-## Populates a grid container with the appropriate things
-## to debug the line sensor.
-func _setup_debug_ui(container: GridContainer) -> void:
-	push_error("_setup_debug_ui() must be implemented in the line sensor adapter")
-	return
 
 ## Obtains the current steering value in ratio.
 ## This is simply because it's easier to use in maths as a ratio as convertion
