@@ -132,9 +132,12 @@ radial_segments = 32
 rings = 32
 
 [node name="DebugElementContainer" type="GridContainer" parent="." unique_id=517806483]
-offset_left = 1796.0
-offset_right = 1920.2378
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -124.23779
 offset_bottom = 209.0
+grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
