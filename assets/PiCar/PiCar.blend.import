@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://d1snkvvda4vrh"
-path="res://.godot/imported/plaquette_blender_scale.blend-6bfaeb7920288dd54fcc84c538dd5cff.scn"
+uid="uid://bpw7llwgokhr3"
+path="res://.godot/imported/PiCar.blend-63fe78015726ceebcf903b2369453797.scn"
 
 [deps]
 
-source_file="res://assets/plaquette_blender_scale.blend"
-dest_files=["res://.godot/imported/plaquette_blender_scale.blend-6bfaeb7920288dd54fcc84c538dd5cff.scn"]
+source_file="res://assets/PiCar/PiCar.blend"
+dest_files=["res://.godot/imported/PiCar.blend-63fe78015726ceebcf903b2369453797.scn"]
 
 [params]
 
