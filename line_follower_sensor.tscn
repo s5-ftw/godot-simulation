@@ -1,39 +1,35 @@
-[gd_scene load_steps=3 format=3 uid="uid://xroxh5wjbwp6"]
+[gd_scene format=3 uid="uid://xroxh5wjbwp6"]
 
 [ext_resource type="Script" uid="uid://da4g0s4hk1egm" path="res://scripts/line_follower_raycast.gd" id="1_4errl"]
 
-[sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_chp8o"]
-length = 0.775414
+[node name="Node3D" type="Node3D" unique_id=1023026082]
 
-[node name="Node3D" type="Node3D"]
-
-[node name="sensor_array" type="Area3D" parent="."]
+[node name="sensor_array" type="Area3D" parent="." unique_id=1775089981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03901223, -0.0055669956)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("1_4errl")
 
-[node name="line_follower_sensor_l" type="CollisionShape3D" parent="sensor_array"]
-transform = Transform3D(1, 0, 0, 0, 0.00254817, -0.999997, 0, 0.999997, 0.00254817, -0.038, 0, 0)
-shape = SubResource("SeparationRayShape3D_chp8o")
+[node name="line_follower_sensor_l" type="RayCast3D" parent="sensor_array" unique_id=228997944]
+transform = Transform3D(0.3, 4.3822626e-09, -1.3079962e-08, -1.3113417e-08, 0.099999666, 0.0007644642, 1.3113418e-08, -0.0002548213, 0.29999912, -0.038, 0, 0)
 
-[node name="line_follower_sensor_ml" type="CollisionShape3D" parent="sensor_array"]
-transform = Transform3D(1, 0, 0, 0, 0.00254817, -0.999997, 0, 0.999997, 0.00254817, -0.019, 0, 0)
-shape = SubResource("SeparationRayShape3D_chp8o")
+[node name="line_follower_sensor_ml" type="RayCast3D" parent="sensor_array" unique_id=1595570096]
+transform = Transform3D(-1, 2.227681e-10, -8.7422514e-08, 3.821371e-15, 0.999997, 0.0025481265, 8.742278e-08, 0.0025481265, -0.999997, -0.019, 0, 0)
 
-[node name="line_follower_sensor_m" type="CollisionShape3D" parent="sensor_array"]
-transform = Transform3D(1, 0, 0, 0, 0.00254817, -0.999997, 0, 0.999997, 0.00254817, 0, 0, 0)
-shape = SubResource("SeparationRayShape3D_chp8o")
+[node name="line_follower_sensor_m" type="RayCast3D" parent="sensor_array" unique_id=1604089167]
+transform = Transform3D(1, 0, 0, 0, 0.999997, 0.0025482138, 0, -0.0025482138, 0.999997, 0, 0, 0)
 
-[node name="line_follower_sensor_mr" type="CollisionShape3D" parent="sensor_array"]
-transform = Transform3D(1, 0, 0, 0, 0.00254817, -0.999997, 0, 0.999997, 0.00254817, 0.019, 0, 0)
-shape = SubResource("SeparationRayShape3D_chp8o")
+[node name="line_follower_sensor_mr" type="RayCast3D" parent="sensor_array" unique_id=1842050774]
+transform = Transform3D(1, 0, 0, 0, 0.999997, 0.0025482138, 0, -0.0025482138, 0.999997, 0.019, 0, 0)
 
-[node name="line_follower_sensor_r" type="CollisionShape3D" parent="sensor_array"]
-transform = Transform3D(1, 0, 0, 0, 0.00254817, -0.999997, 0, 0.999997, 0.00254817, 0.038, 0, 0)
-shape = SubResource("SeparationRayShape3D_chp8o")
+[node name="line_follower_sensor_r" type="RayCast3D" parent="sensor_array" unique_id=1782161189]
+transform = Transform3D(1, 0, 0, 0, 0.999997, 0.0025482138, 0, -0.0025482138, 0.999997, 0.038, 0, 0)
 
+[connection signal="area_entered" from="sensor_array" to="sensor_array" method="_on_area_entered"]
 [connection signal="area_exited" from="sensor_array" to="sensor_array" method="_on_area_exited"]
 [connection signal="area_shape_entered" from="sensor_array" to="sensor_array" method="_on_area_shape_entered"]
+[connection signal="area_shape_exited" from="sensor_array" to="sensor_array" method="_on_area_shape_exited"]
 [connection signal="body_entered" from="sensor_array" to="sensor_array" method="_on_body_entered"]
+[connection signal="body_exited" from="sensor_array" to="sensor_array" method="_on_body_exited"]
 [connection signal="body_shape_entered" from="sensor_array" to="sensor_array" method="_on_body_shape_entered"]
 [connection signal="body_shape_exited" from="sensor_array" to="sensor_array" method="_on_body_shape_exited"]

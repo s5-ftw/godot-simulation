@@ -2,12 +2,22 @@ extends Node3D
 
 # Variables
 var NetworkIPAddrRegex = RegEx.new()
+var manager: VehicleManager
+
+@onready var debug_ui_container = $DebugElementContainer
+@onready var line_sensor_area = $"PiCar-col/PiCar#line_follower_sensor"
 
 # Engine functions
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	NetworkIPAddrRegex.compile(r'^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$')
 	#get_node("NetworkFSM").current_state = $NetworkFSM/NetworkInitState
+	
+	# Vehicle creation logic and debug assignments
+	manager = VehicleFactory.create("SunFounder PiCar")
+	manager.bind_debug_ui(debug_ui_container)
+	manager.adapters.line_sensor.bind(line_sensor_area.get_child(0))
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -15,7 +25,6 @@ func _process(delta):
 # Signals functions
 func _on_quit_pressed():
 	$NetworkFSM.current_state = $NetworkFSM/NetworkClosingConnectionState
-	var manager = VehicleFactory.create("SunFounder PiCar")
 	get_tree().quit()
 
 func _on_connect_pressed():
@@ -37,3 +46,7 @@ func _on_check_box_toggled(toggled_on):
 	if toggled_on:
 		$GridContainer/le_IpAdress.text = "127.0.0.1"
 		get_node("NetworkFSM").current_state = $NetworkFSM/NetworkInitState
+		
+		
+func _on_btn_test_pressed():
+	print(manager.adapters.line_sensor.read())

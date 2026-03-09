@@ -18,8 +18,6 @@ static func new_builder() -> PiCarBuilder:
 ## Build everything from a config object.
 func from_config(config: VehicleConfig) -> PiCarBuilder:
 	print("PiCar From config")
-	print(config)
-	print(config.driving)
 	return self.with_driving_config(config.driving).with_steering_config(config.steering).with_distance_config(config.distance_sensor).with_line_config(config.line_sensor)
 	
 func with_driving_config(config: DrivingConfig) -> PiCarBuilder:
