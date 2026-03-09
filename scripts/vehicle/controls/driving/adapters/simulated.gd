@@ -1,6 +1,6 @@
 ## Adapter that simulates the forward / backwards motion of the vehicle
 ## Connecting the program to the simulated objects rather than the actual vehicle.
-class_name SimulatedDrivingAdapter
+class_name SimulatedDriving
 extends DrivingAdapter
 
 var throttle: float = 0.0

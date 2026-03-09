@@ -19,6 +19,7 @@ func _ready():
 	manager.bind_debug_ui(debug_ui_container)
 	manager.adapters.line_sensor.bind(line_sensor_area.get_child(0))
 	manager.adapters.driving.bind(vehicle_body)
+	manager.adapters.steering.bind(vehicle_body)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -28,6 +29,13 @@ func _process(delta):
 		manager.adapters.driving.set_driving(-1)
 	else:
 		manager.adapters.driving.set_driving(0)
+		
+	if Input.is_key_pressed(KEY_A):
+		manager.adapters.steering.set_steering(-1)
+	elif Input.is_key_pressed(KEY_D):
+		manager.adapters.steering.set_steering(1)
+	else:
+		manager.adapters.steering.set_steering(0)
 
 # Signals functions
 func _on_quit_pressed():
