@@ -20,7 +20,7 @@ func read() -> float:
 	## AWAIT LOGIC SIMULATING BEING STUCK WAITING FOR SENSOR ECHO
 	##await bound_node.create_timer(time_to_wait).timeout
 	
-	var now = Time.get_ticks_msec() / 1000.0
+	var now = Time.get_ticks_msec()
 	# You didn't wait for the poll interval to end. Your signal has higher chance to be noisy
 	# because you might be detecting an old echo... Accept the limitations fam.
 	if self.config.poll_interval != 0 and now < next_ready_time:
@@ -28,12 +28,12 @@ func read() -> float:
 
 	# Next allowed read time
 	next_ready_time = now + self.config.poll_interval
-	return self.config.min_distance
+	return distance
 
 func is_ready() -> bool:
 	if self.config.poll_interval == 0:
 		return true
-	var now = Time.get_ticks_msec() / 1000.0
+	var now = Time.get_ticks_msec()
 	return now >= next_ready_time
 	
 ## If you're not threaded, everytime you TRIG, you wait x amount of ms
