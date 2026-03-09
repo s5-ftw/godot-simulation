@@ -3,17 +3,10 @@
 class_name SimulatedDistanceSensor
 extends DistanceSensorAdapter
 
-## Keeps track of the polling interval to avoid making the user think he can poll really fast.
+## Keeps track of the polling interval to avoid making you think you can poll really fast.
 var next_ready_time: float = 0.0
 var bound_node: Node = null
-
-# Speed of sound in cm/s (approx 343 m/s)
-const SOUND_SPEED_CM_PER_SEC = 34300.0
-
-## Required to bind a node for timers and the raycast
-## Call this in your main script to tell the adapter what to use
-func bind(node: Node) -> void:
-	bound_node = node
+const SOUND_SPEED_CM_PER_SEC = 34300.0 # approx 343 m/s
 
 ## Follows precision time set in config
 ## @returns centimeters
@@ -48,12 +41,10 @@ func is_ready() -> bool:
 ## for the echo to arrive. This dictate how long you'll wait based on the
 ## speed of sound.
 func _calculate_await_time(distance_cm: float) -> float:
-	# SRF05 ultrasonic sensor sends sound there and back
 	# time = distance / speed * 2 (round trip)
 	return (distance_cm / SOUND_SPEED_CM_PER_SEC) * 2.0
 
-## Apply a range of precision to the ideal simulated distance.
+## Apply noises in a precision range to the ideal simulated distance.
 func _apply_precision_noise(distance_cm: float) -> float:
-	var precision = self.config.precision
-	var noise = randf_range(-precision, precision)
+	var noise = randf_range(-self.config.precision, self.config.precision)
 	return distance_cm + noise
