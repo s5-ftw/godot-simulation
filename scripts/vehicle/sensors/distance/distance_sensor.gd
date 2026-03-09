@@ -6,24 +6,24 @@
 class_name DistanceSensor
 extends RefCounted
 
-var _filter
-var _adapter
-var _old_raw_value
+var _filter: DistanceFilterStrategy
+var _adapter: DistanceSensorAdapter
+var _old_raw_value: float
 
 # Constructor. Managed with the builder.
 func _init(
 	filter: DistanceFilterStrategy, 
 	adapter: DistanceSensorAdapter
 ) -> void:
-	_filter = filter
-	_adapter = adapter
-	_old_raw_value = 0
+	self._filter = filter
+	self._adapter = adapter
+	self._old_raw_value = 0
 
 ## Obtain the amount of centimeters the distance sensor is currently reading,
 ## assuming it's ready for you to read it.
 ## if it's not ready, the old value is simply given back to you.
 func read() -> float:
-	if _adapter.is_ready():
-		_old_raw_value = _adapter.read()
-		_old_raw_value = _filter.filter(_old_raw_value)
-	return _old_raw_value
+	if self._adapter.is_ready():
+		self._old_raw_value = self._adapter.read()
+		self._old_raw_value = self._filter.apply(_old_raw_value)
+	return self._old_raw_value
