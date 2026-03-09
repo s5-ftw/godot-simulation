@@ -19,7 +19,7 @@ var motor_count: int
 var motor_usable_torque_ratio: float
 ## How heavy is the vehicle? Dictates the acceleration.
 ## In Kilograms.
-var vehicle_mass: float
+var vehicle_weight: float
 ## Estimated friction of the wheels. Mu.
 var wheel_friction: float
 ## The radius, in cm, of the wheels.
@@ -37,7 +37,7 @@ func _init(
 	motor_force=0.078,
 	motor_count=2,
 	motor_usable_torque_ratio=0.35,
-	vehicle_mass=1.3,
+	vehicle_weight=1.3,
 	wheel_friction=0.6,
 	wheel_radius=3.3
 ):
@@ -49,6 +49,6 @@ func _init(
 	self.motor_force = motor_force
 	self.motor_count = motor_count
 	self.motor_usable_torque_ratio = motor_usable_torque_ratio
-	self.vehicle_mass = vehicle_mass
+	self.vehicle_weight = vehicle_weight
 	self.wheel_friction = wheel_friction
 	self.wheel_radius = wheel_radius
