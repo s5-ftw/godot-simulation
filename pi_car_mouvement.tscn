@@ -30,6 +30,9 @@ sky_material = SubResource("ProceduralSkyMaterial_jv41d")
 background_mode = 2
 sky = SubResource("Sky_nfout")
 
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ngkjk"]
+data = PackedVector3Array(-0.05, -0.05, 0.05, -0.05, -0.05, -0.05, -0.05, 0.05, -0.05, 0.05, -0.05, -0.05, -0.05, -0.05, -0.05, -0.05, -0.05, 0.05, -0.05, 0.05, -0.05, -0.05, -0.05, -0.05, 0.05, -0.05, -0.05, -0.05, 0.05, -0.05, -0.05, 0.05, 0.05, -0.05, -0.05, 0.05, -0.05, -0.05, 0.05, -0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, -0.05, 0.05, 0.05, -0.05, 0.05, -0.05, -0.05, -0.05, 0.05, 0.05, -0.05, 0.05, 0.05, -0.05, -0.05, 0.05, 0.05, 0.05, 0.05, -0.05, 0.05, -0.05, -0.05, 0.05, 0.05, -0.05, -0.05, 0.05, -0.05, 0.05, 0.05, 0.05, 0.05, 0.05, -0.05, -0.05, 0.05, 0.05, -0.05, -0.05, 0.05, -0.05, -0.05, 0.05, -0.05, 0.05, 0.05, -0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, -0.05, 0.05, -0.05, -0.05)
+
 [sub_resource type="SphereShape3D" id="SphereShape3D_iys2i"]
 
 [node name="Main" type="Node3D" unique_id=74298755]
@@ -112,8 +115,13 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1442398653]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33023, 0.0713751, 0.100219)
+transform = Transform3D(1, 0, 0, 0, 17.754208, 0, 0, 0, 14.988642, 2.818313, 0.0713751, 0.100219)
 size = Vector3(0.1, 0.1, 0.1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CSGBox3D" unique_id=207641978]
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="CSGBox3D/StaticBody3D" unique_id=1115134967]
+shape = SubResource("ConcavePolygonShape3D_ngkjk")
 
 [node name="Bille" type="RigidBody3D" parent="." unique_id=792547708]
 transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, 1.0165294, 1.3689198, -0.300465)
