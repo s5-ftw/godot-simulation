@@ -12,15 +12,20 @@ var step_size: float
 
 var adapter_type: String
 
+## Wether it should be debugged in a ui
+var ui_debug: bool
+
 func _init(
 	real_middle_value=0.0,
 	real_maximum_value=1.0,
 	real_minimum_value=-1.0,
 	step_size_value=0.0,
-	adapter_type_value="none"
+	adapter_type_value="none",
+	ui_debug=true
 ):
 	self.real_middle = real_middle_value
 	self.real_maximum = real_maximum_value
 	self.real_minimum = real_minimum_value
 	self.step_size = step_size_value
 	self.adapter_type = adapter_type_value
+	self.ui_debug = ui_debug

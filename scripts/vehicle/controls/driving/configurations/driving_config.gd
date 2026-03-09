@@ -9,13 +9,18 @@ var real_stopped: float
 
 var adapter_type: String
 
+## Wether it should be debugged in a ui
+var ui_debug: bool
+
 func _init(
 	real_stopped_speed=0.0,
 	real_max_speed=1.0,
 	real_min_speed=-1.0,
-	adapter_type="none"
+	adapter_type="none",
+	ui_debug=true
 ):
 	self.real_stopped = real_stopped_speed
 	self.real_maximum = real_max_speed
 	self.real_minimum = real_min_speed
 	self.adapter_type = adapter_type
+	self.ui_debug = ui_debug

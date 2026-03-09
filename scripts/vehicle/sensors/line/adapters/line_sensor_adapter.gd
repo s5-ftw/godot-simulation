@@ -7,11 +7,16 @@ class_name LineSensorAdapter
 extends RefCounted
 
 var config: LineSensorConfig
+var _sensor_area: Area3D
 
 func _init(
 	config: LineSensorConfig
 ) -> void:
 	self.config = config
+
+## Call this after instantiation to bind the adapter to the Area3D sensor node.
+func bind(area: Area3D) -> void:
+	_sensor_area = area
 
 ## Obtains the current steering value in ratio.
 ## This is simply because it's easier to use in maths as a ratio as convertion
