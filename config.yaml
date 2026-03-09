@@ -1,6 +1,6 @@
 distance_sensor:
   adapter_type: "simulated"
-  min_distance: -67
+  min_distance: 3
   max_distance: 420
   poll_interval: 60
   precision: 0.3
