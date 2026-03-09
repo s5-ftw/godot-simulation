@@ -69,10 +69,10 @@ func _setup_raycast(width: float, height: float, spacing: float, length: float =
 		var ray := RayCast3D.new()
 		
 		# Position the ray
-		ray.position = Vector3(start_x + i * spacing, height, 0)
+		ray.position = Vector3(start_x + i * spacing, -(height/2) - length, 0)
 		
 		# Cast downward
-		ray.target_position = Vector3(0, -length, 0)
+		ray.target_position = Vector3(0, length, 0)
 		ray.enabled = true
 		_sensor_area.add_child(ray)
 

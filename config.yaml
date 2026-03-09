@@ -11,7 +11,7 @@ line_sensor:
   sensor_amount: 5
   adapter_type: "simulated"
   cone_radius: 0.1
-  cone_height: 0.1
+  cone_height: 0.2
   ui_debug: true
 
 steering:

@@ -5,7 +5,7 @@ var NetworkIPAddrRegex = RegEx.new()
 var manager: VehicleManager
 
 @onready var debug_ui_container = $DebugElementContainer
-@onready var line_sensor_area = $"PiCar#line_follower_sensor"
+@onready var line_sensor_area = $"PiCar-col/PiCar#line_follower_sensor"
 
 # Engine functions
 # Called when the node enters the scene tree for the first time.

@@ -70,9 +70,6 @@ transform = Transform3D(-7.39508e-06, 1, 0, -1, -7.39508e-06, 0, 0, 0, 1, 0, 0.0
 target_position = Vector3(0, -0.8, 0)
 hit_from_inside = true
 
-[node name="PiCar#line_follower_sensor" parent="." unique_id=1217243279 instance=ExtResource("7_u3vry")]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -0.166544, 0.0646156, 0.00079032)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=891664719]
 environment = SubResource("Environment_c8ocf")
 
@@ -148,6 +145,9 @@ size_flags_vertical = 0
 
 [node name="PiCar-col" parent="." unique_id=1483979899 instance=ExtResource("8_ngkjk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.9535548, 0.6884347, -0.10617786)
+
+[node name="PiCar#line_follower_sensor" parent="PiCar-col" unique_id=1217243279 instance=ExtResource("7_u3vry")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 0.0006585717, -0.49232036, -0.57452476)
 
 [node name="PiCar#Camera3D" type="Camera3D" parent="PiCar-col" unique_id=230118704]
 transform = Transform3D(1, 0, 0, 0, 0.9396927, 0.34202015, 0, -0.34202015, 0.9396927, 0, 1.207882, 3.0704694)
