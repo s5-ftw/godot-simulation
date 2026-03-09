@@ -7,6 +7,8 @@ static func create(config: DrivingConfig) -> DrivingAdapter:
 	match config.adapter_type:
 		"none":
 			return NoDriving.new(config)
+		"simulated":
+			return SimulatedDrivingAdapter.new(config)
 		_:
 			push_error("Unknown driving adapter")
 			return null

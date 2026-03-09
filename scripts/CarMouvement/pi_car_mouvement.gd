@@ -26,12 +26,12 @@ func _process(delta: float) -> void:
 	wheel_fr.rotation.y = steer_angle
 	
 	# Acceleration
-	if Input.is_key_pressed(KEY_W):
-		speed += acceleration * delta
-	elif Input.is_key_pressed(KEY_S):
-		speed -= acceleration * delta
-	else:
-		slow_down_letting_go(delta)
+	#if Input.is_key_pressed(KEY_W):
+		#speed += acceleration * delta
+	#elif Input.is_key_pressed(KEY_S):
+		#speed -= acceleration * delta
+	#else:
+		#slow_down_letting_go(delta)
 		
 	speed = clamp(speed, -max_speed, max_speed)
 		

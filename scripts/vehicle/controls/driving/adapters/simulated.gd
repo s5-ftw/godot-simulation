@@ -11,9 +11,16 @@ var friction: float = 0
 var max_speed: float = 0
 
 func bind(body: Node3D) -> void:
-	body.connect("_process", self._execute_driving)
 	self._vehicle_node = body
 	self._set_physics()
+	
+	# Can't use _process(data). Because first time doing GoDot = not knowing proper developpement technique for it.
+	# and proper dev techniques = redoing everything.
+	var drive_timer = Timer.new()
+	drive_timer.wait_time = 0.0167 # ~60Hz
+	drive_timer.autostart = true
+	drive_timer.timeout.connect(func(): _execute_driving(drive_timer.wait_time))
+	body.add_child(drive_timer)
 
 ## Always returns your wanted speed.
 ## The real vehicle has no motor encoders.
@@ -40,16 +47,15 @@ func _execute_driving(delta: float) -> void:
 	var forward = -self._vehicle_node.transform.basis.z
 	self._vehicle_node.position += forward * self.velocity * delta
 
-
 ## Calculates the physics of the vehicle, to approximate the acceleration and deacceleration.
 func _set_physics() -> void:
 	## Maximum force the car can produce.
 	var usable_torque = self.config.motor_force * self.config.motor_usable_torque_ratio
-	var wheel_force = usable_torque / self.config.wheel_radius
+	var wheel_force = usable_torque / (self.config.wheel_radius / 100)
 	self.max_force = wheel_force * self.config.motor_count
 	
 	## Friction
-	self.friction = self.config.wheel_friction * 4
+	self.friction = self.config.wheel_friction
 
 	var wheel_circumference = 2 * PI * (self.config.wheel_radius / 100)
 	self.max_speed = (wheel_circumference * 200) / 60 # 200 RPM as maximum turns per minutes.
