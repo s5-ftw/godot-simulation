@@ -27,6 +27,7 @@ func bind_debug_ui(container: GridContainer)-> void:
 		if typeof(member) == TYPE_OBJECT and member != null:
 			print("- ", property_name)
 			if !member.has_method("_bind_debug_ui"):
+				print("\t- No _bind_debug_ui method")
 				continue
 
 			var config = member.get("config")

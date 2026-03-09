@@ -9,6 +9,7 @@ extends RefCounted
 var _filter: DistanceFilterStrategy
 var _adapter: DistanceSensorAdapter
 var _old_raw_value: float
+var config: DistanceSensorConfig
 
 # Constructor. Managed with the builder.
 func _init(
@@ -18,6 +19,7 @@ func _init(
 	self._filter = filter
 	self._adapter = adapter
 	self._old_raw_value = 0
+	self.config = adapter.config
 
 ## Obtain the amount of centimeters the distance sensor is currently reading,
 ## assuming it's ready for you to read it.
@@ -27,3 +29,7 @@ func read() -> float:
 		self._old_raw_value = self._adapter.read()
 		self._old_raw_value = self._filter.apply(_old_raw_value)
 	return self._old_raw_value
+
+func _bind_debug_ui(container: GridContainer) -> void:
+	if self._adapter.has_method("_bind_debug_ui"):
+		self._adapter._bind_debug_ui(container)
