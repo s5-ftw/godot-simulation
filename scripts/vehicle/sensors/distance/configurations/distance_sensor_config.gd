@@ -18,7 +18,7 @@ func _init(
 	min_distance=0.0,
 	max_distance=6942069.0,
 	poll_interval=0,
-	precision=0.3
+	precision=0.3,
 	ui_debug=true
 ):
 	self.min_distance = min_distance
