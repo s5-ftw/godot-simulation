@@ -25,19 +25,57 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var key_pressed = false
 	if Input.is_key_pressed(KEY_W):
 		manager.adapters.driving.set_driving(1)
+		key_pressed = true
 	elif Input.is_key_pressed(KEY_S):
 		manager.adapters.driving.set_driving(-1)
+		key_pressed = true
 	else:
 		manager.adapters.driving.set_driving(0)
 		
 	if Input.is_key_pressed(KEY_A):
+		key_pressed = true
 		manager.adapters.steering.set_steering(-1)
 	elif Input.is_key_pressed(KEY_D):
 		manager.adapters.steering.set_steering(1)
+		key_pressed = true
 	else:
 		manager.adapters.steering.set_steering(0)
+		
+	if key_pressed:
+		return
+		
+	var sensor_value = manager.adapters.line_sensor.read()
+	if sensor_value == 0:
+		# Line lost: stop or try to turn in last known direction
+		manager.adapters.driving.set_driving(0)
+		manager.adapters.steering.set_steering(0)
+		return
+	
+	# Calculate error based on which sensors are active
+	# Sensors: [0, 1, 2, 3, 4] -> LSB first
+	var weights = [-2, -1, 0, 1, 2]  # sensor position weights
+	var error = 0
+	var active_count = 0
+	
+	for i in range(5):
+		if sensor_value & (1 << i):
+			error += weights[i]
+			active_count += 1
+	
+	#print(error)
+	
+	#if active_count > 0:
+	#	error /= active_count  # average if multiple sensors detect the line
+	
+	# Apply proportional control to steering
+	var steering = clamp(0.2 * error, -1, 1)
+	
+	# Set driving and steering
+	manager.adapters.driving.set_driving(0.5)
+	manager.adapters.steering.set_steering(steering)
 
 # Signals functions
 func _on_quit_pressed():
