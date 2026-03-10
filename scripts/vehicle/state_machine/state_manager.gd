@@ -13,8 +13,8 @@ func _init(
 	self.current_state = initial_state.new(self)
 
 ## Executes the current state.
-func execute():
-	return current_state.execute()
+func execute(delta):
+	return current_state.execute(delta)
 
 ## Tells you which state is currently stored in the state machine.
 func current() -> String:

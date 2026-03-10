@@ -6,9 +6,8 @@ extends VehicleState
 
 var first_time: bool = false
 
-
 ## Awaits a line sensor related start line.
-func execute():
+func execute(delta):
 	var line = self.manager.adapters.line_sensor.read()
 	var on_start_line = all_sensors_on(line)
 	

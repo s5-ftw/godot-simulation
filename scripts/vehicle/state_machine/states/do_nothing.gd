@@ -4,7 +4,7 @@ class_name DoNothingState
 extends VehicleState
 
 ## Does nothing at all
-func execute():
+func execute(delta):
 	return
 
 ## Returns the name of the current state.
