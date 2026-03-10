@@ -45,7 +45,8 @@ func _execute_driving(delta: float) -> void:
 	var drag = self.friction * sign(self.velocity)
 
 	# Acceleration
-	var acceleration = (effective_force - drag) / self.config.vehicle_weight
+	var acceleration = (effective_force - drag) / self.config.maximum_acceleration
+	acceleration = clamp(acceleration, -self.config.maximum_acceleration, self.config.maximum_acceleration)
 	self.velocity += acceleration * delta
 
 	# Prevent velocity sign flip due to drag

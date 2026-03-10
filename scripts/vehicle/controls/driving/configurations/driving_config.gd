@@ -10,6 +10,8 @@ var adapter_type: String
 
 ## In meters per second, what's the top speed of the car?
 var maximum_speed: float
+## In meters per second^2, what's the top acceleration of the car?
+var maximum_acceleration: float
 ## How strong are the motors? Dictates the acceleration.
 ## In newton meters
 var motor_force: float
@@ -40,7 +42,8 @@ func _init(
 	vehicle_weight=0.5,
 	wheel_friction=0.6,
 	wheel_radius=3.3,
-	maximum_speed = 2
+	maximum_speed = 2,
+	maximum_acceleration = 0.010
 ):
 	self.real_stopped = real_stopped_speed
 	self.real_maximum = real_max_speed
@@ -54,3 +57,4 @@ func _init(
 	self.wheel_friction = wheel_friction
 	self.wheel_radius = wheel_radius
 	self.maximum_speed = maximum_speed
+	self.maximum_acceleration = maximum_acceleration
