@@ -6,6 +6,7 @@ var manager: VehicleManager
 
 @onready var debug_ui_container = $DebugElementContainer
 @onready var line_sensor_area = $"PiCar-col/PiCar#line_follower_sensor"
+@onready var vehicle_body = $"PiCar-col"
 @onready var distance_sensor_raycast = $"PiCar-col/PiCar#RayCast3D"
 
 # Engine functions
@@ -18,11 +19,25 @@ func _ready():
 	manager = VehicleFactory.create("SunFounder PiCar")
 	manager.bind_debug_ui(debug_ui_container)
 	manager.adapters.line_sensor.bind(line_sensor_area.get_child(0))
+	manager.adapters.driving.bind(vehicle_body)
+	manager.adapters.steering.bind(vehicle_body)
 	manager.adapters.distance_sensor._adapter.bind(distance_sensor_raycast)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	if Input.is_key_pressed(KEY_W):
+		manager.adapters.driving.set_driving(1)
+	elif Input.is_key_pressed(KEY_S):
+		manager.adapters.driving.set_driving(-1)
+	else:
+		manager.adapters.driving.set_driving(0)
+		
+	if Input.is_key_pressed(KEY_A):
+		manager.adapters.steering.set_steering(-1)
+	elif Input.is_key_pressed(KEY_D):
+		manager.adapters.steering.set_steering(1)
+	else:
+		manager.adapters.steering.set_steering(0)
 
 # Signals functions
 func _on_quit_pressed():

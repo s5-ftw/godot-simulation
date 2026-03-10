@@ -19,11 +19,10 @@ steering:
   real_middle: 0
   real_maximum: 420
   real_minimum: -67
-  step_size: 1
-  adapter_type: "none"
+  adapter_type: "simulated"
 
 driving:
   real_maximum: 10
   real_minimum: -10
   real_stopped: 67
-  adapter_type: "none"
+  adapter_type: "simulated"

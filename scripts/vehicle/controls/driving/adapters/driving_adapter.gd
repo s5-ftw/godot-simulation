@@ -7,11 +7,16 @@ class_name DrivingAdapter
 extends RefCounted
 
 var config: DrivingConfig
+var _vehicle_node: Node3D
 
 func _init(
 	config: DrivingConfig
 ) -> void:
 	self.config = config
+
+## Call this after instantiation to bind the adapter to the vehicle's body.
+func bind(body: Node3D) -> void:
+	_vehicle_node = body
 
 ## Obtains the current driving motor value in ratio.
 ## This is simply because it's easier to use in maths as a ratio as convertion

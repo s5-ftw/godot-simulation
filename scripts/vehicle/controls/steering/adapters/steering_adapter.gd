@@ -7,11 +7,16 @@ class_name SteeringAdapter
 extends RefCounted
 
 var config: SteeringConfig
+var _vehicle_node: Node3D
 
 func _init(
 	from_config: SteeringConfig
 ) -> void:
 	self.config = from_config
+
+## Call this after instantiation to bind the adapter to the vehicle's body.
+func bind(body: Node3D) -> void:
+	_vehicle_node = body
 
 ## Obtains the current steering value in ratio.
 ## This is simply because it's easier to use in maths as a ratio as convertion
