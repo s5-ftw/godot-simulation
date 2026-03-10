@@ -37,9 +37,10 @@ func _init(
 	motor_force=0.078,
 	motor_count=2,
 	motor_usable_torque_ratio=0.35,
-	vehicle_weight=1.3,
+	vehicle_weight=0.5,
 	wheel_friction=0.6,
-	wheel_radius=3.3
+	wheel_radius=3.3,
+	maximum_speed = 2
 ):
 	self.real_stopped = real_stopped_speed
 	self.real_maximum = real_max_speed
@@ -52,3 +53,4 @@ func _init(
 	self.vehicle_weight = vehicle_weight
 	self.wheel_friction = wheel_friction
 	self.wheel_radius = wheel_radius
+	self.maximum_speed = maximum_speed

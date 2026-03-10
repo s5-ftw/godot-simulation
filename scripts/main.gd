@@ -9,6 +9,8 @@ var manager: VehicleManager
 @onready var vehicle_body = $"PiCar-col"
 @onready var distance_sensor_raycast = $"PiCar-col/PiCar#RayCast3D"
 
+var lineAlgorithm: LineFollowing = LineFollowing.new()
+
 # Engine functions
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -25,19 +27,29 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var key_pressed = false
 	if Input.is_key_pressed(KEY_W):
 		manager.adapters.driving.set_driving(1)
+		key_pressed = true
 	elif Input.is_key_pressed(KEY_S):
 		manager.adapters.driving.set_driving(-1)
+		key_pressed = true
 	else:
 		manager.adapters.driving.set_driving(0)
 		
 	if Input.is_key_pressed(KEY_A):
+		key_pressed = true
 		manager.adapters.steering.set_steering(-1)
 	elif Input.is_key_pressed(KEY_D):
 		manager.adapters.steering.set_steering(1)
+		key_pressed = true
 	else:
 		manager.adapters.steering.set_steering(0)
+		
+	if key_pressed:
+		return
+		
+	lineAlgorithm.execute(delta, manager)
 
 # Signals functions
 func _on_quit_pressed():

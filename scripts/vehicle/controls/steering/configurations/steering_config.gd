@@ -39,9 +39,9 @@ func _init(
 	angle_per_second=428,
 	adapter_type_value="none",
 	ui_debug=true,
-	left_angle_max = -70,
-	right_angle_max = 70,
-	wheel_base = 13,
+	left_angle_max = -35,
+	right_angle_max = 35,
+	wheel_base = 12.5,
 	track_width = 9
 ):
 	self.real_middle = real_middle_value
