@@ -9,7 +9,12 @@ extends Node3D
 
 @onready var wheel_fl = $WheelFrontLeft
 @onready var wheel_fr = $WheelFrontRight
+
+# Make the wheel seem like they are turning
 @export var steer_angle = 0.0
+
+# In centimeters, whats the distance between both sets of wheels?
+@export var wheel_base = 0.0
 
 func _process(delta: float) -> void:
 	# Turning
@@ -21,9 +26,15 @@ func _process(delta: float) -> void:
 		#steer_angle = deg_to_rad(-max_wheel_angle)
 	#else:
 		#steer_angle = 0
-		
+	
+	# Wheel mesh turning
 	wheel_fl.rotation.y = steer_angle
 	wheel_fr.rotation.y = steer_angle
+	
+	# Vehicle angular rotation
+	var yaw_rate = speed * (tan(steer_angle) / wheel_base)
+	print(wheel_base)
+	rotation.y += yaw_rate * delta
 	
 	# Acceleration
 	#if Input.is_key_pressed(KEY_W):

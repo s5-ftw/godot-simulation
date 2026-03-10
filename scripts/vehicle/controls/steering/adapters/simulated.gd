@@ -9,6 +9,7 @@ var old_angle: float = 0.0
 
 func bind(body: Node3D) -> void:
 	self._vehicle_node = body
+	self._vehicle_node.wheel_base = self.config.wheel_base / 100
 	
 	# Can't use _process(data). Because first time doing GoDot = not knowing proper developpement technique for it.
 	# and proper dev techniques = redoing everything.
@@ -33,7 +34,6 @@ func set_steering(new: float) -> void:
 	
 func _execute_steering(delta: float) -> void:
 	var angle_range = -self.config.left_angle_max + self.config.right_angle_max
-	var middle = angle_range/2
 	var wanted_angle = ((self.steering + 1)/2) * angle_range
 	wanted_angle = wanted_angle + self.config.left_angle_max
 	self.current_angle = move_toward(
@@ -42,4 +42,5 @@ func _execute_steering(delta: float) -> void:
 			self.config.angle_per_second * delta
 		)
 	## Making the wheels visually rotate.
-	self._vehicle_node.steer_angle = deg_to_rad(-self.current_angle)
+	var radians = deg_to_rad(-self.current_angle)
+	self._vehicle_node.steer_angle = radians

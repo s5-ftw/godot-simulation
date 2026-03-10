@@ -21,6 +21,14 @@ var left_angle_max: float
 ## This is positive degrees. put the sign as +.
 var right_angle_max: float
 
+## Distance between front wheels and back wheels.
+## In centimeters. Used to simulate turning radius.
+var wheel_base: float
+
+## Distance between the steering wheels.
+## In centimeters.
+var track_width: float
+
 ## Wether it should be debugged in a ui
 var ui_debug: bool
 
@@ -31,8 +39,10 @@ func _init(
 	angle_per_second=428,
 	adapter_type_value="none",
 	ui_debug=true,
-	left_angle_max = -30,
-	right_angle_max = 70
+	left_angle_max = -70,
+	right_angle_max = 70,
+	wheel_base = 13,
+	track_width = 9
 ):
 	self.real_middle = real_middle_value
 	self.real_maximum = real_maximum_value
@@ -42,3 +52,5 @@ func _init(
 	self.ui_debug = ui_debug
 	self.left_angle_max = left_angle_max
 	self.right_angle_max = right_angle_max
+	self.wheel_base = wheel_base
+	self.track_width = track_width

@@ -50,9 +50,8 @@ func _execute_driving(delta: float) -> void:
 		self.velocity = 0
 	self.old_velocity = self.velocity
 	
-	# Move in the direction the car faces
-	var forward = -self._vehicle_node.transform.basis.z
-	self._vehicle_node.position += forward * self.velocity * delta
+	# Applies it with the node's special code.
+	self._vehicle_node.speed = self.velocity
 	
 	_force_label.text = str(snapped(force, 0.0001))
 	_acceleration_label.text = str(snapped(acceleration, 0.0001))
