@@ -38,22 +38,25 @@ func set_driving(new: float) -> void:
 	self.throttle = new
 	
 func _execute_driving(delta: float) -> void:
-	var force = self.max_force * self.throttle
+	# Motor force scaled by speed (simple back-EMF effect)
+	var effective_force = self.max_force * self.throttle * (1 - abs(self.velocity) / self.max_speed)
+
+	# Friction / drag
 	var drag = self.friction * sign(self.velocity)
-	var acceleration = (force - drag) / self.config.vehicle_weight
-	
+
+	# Acceleration
+	var acceleration = (effective_force - drag) / self.config.vehicle_weight
 	self.velocity += acceleration * delta
-	self.velocity = clamp(self.velocity, -self.max_speed, max_speed)
-	
-	# Prevent sign flip caused only by drag
-	if sign(self.velocity) != sign(self.old_velocity) and force == 0:
+
+	# Prevent velocity sign flip due to drag
+	if sign(self.velocity) != sign(self.old_velocity) and effective_force == 0:
 		self.velocity = 0
 	self.old_velocity = self.velocity
-	
-	# Applies it with the node's special code.
+
+	# Apply to node
 	self._vehicle_node.speed = self.velocity
 	
-	_force_label.text = str(snapped(force, 0.0001))
+	_force_label.text = str(snapped(effective_force, 0.0001))
 	_acceleration_label.text = str(snapped(acceleration, 0.0001))
 	_velocity_ratio_label.text = str(snapped(self.velocity / self.max_speed, 0.0001))
 	_speed_label.text = str(snapped(self.velocity, 0.0001))
@@ -69,7 +72,7 @@ func _set_physics() -> void:
 	self.friction = self.config.wheel_friction
 
 	var wheel_circumference = 2 * PI * (self.config.wheel_radius / 100)
-	self.max_speed = (wheel_circumference * 200) / 60 # 200 RPM as maximum turns per minutes.
+	self.max_speed = (wheel_circumference * 500) / 60 # 200 RPM as maximum turns per minutes.
 
 	print("Driving physics:")
 	print("- max force: ", self.max_force)
