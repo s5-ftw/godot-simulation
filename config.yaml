@@ -1,9 +1,10 @@
 distance_sensor:
-  adapter_type: "none"
-  min_distance: -67
+  adapter_type: "simulated"
+  min_distance: 3
   max_distance: 420
   poll_interval: 60
-  filter_type: "low-pass"
+  precision: 0.3
+  filter_type: "none"
   sensor_type: "SRF05"
 
 line_sensor:
@@ -11,18 +12,24 @@ line_sensor:
   sensor_amount: 5
   adapter_type: "simulated"
   cone_radius: 0.1
-  cone_height: 0.1
+  cone_height: 1
   ui_debug: true
 
 steering:
   real_middle: 0
   real_maximum: 420
   real_minimum: -67
-  step_size: 1
-  adapter_type: "none"
+  adapter_type: "simulated"
 
 driving:
   real_maximum: 10
   real_minimum: -10
   real_stopped: 67
-  adapter_type: "none"
+  adapter_type: "simulated"
+  maximum_speed: 2
+  motor_force: 0.08
+  motor_count: 2
+  motor_usable_torque_ratio: 0.5
+  vehicle_weight: 0.5
+  wheel_friction: 0.5
+  wheel_radius: 3.3

@@ -6,6 +6,8 @@ static func create(config: DistanceSensorConfig) -> DistanceSensorAdapter:
 	match config.adapter_type:
 		"none":
 			return NoDistanceSensor.new(config)
+		"simulated":
+			return SimulatedDistanceSensor.new(config)
 		_:
 			push_error("Unknown distance filter type")
 			return null

@@ -7,6 +7,8 @@ static func create(config: SteeringConfig) -> SteeringAdapter:
 	match config.adapter_type:
 		"none":
 			return NoSteering.new(config)
+		"simulated":
+			return SimulatedSteering.new(config)
 		_:
 			push_error("Unknown steering adapter")
 			return null

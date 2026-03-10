@@ -5,10 +5,30 @@ extends DistanceSensorAdapter
 class_name NoDistanceSensor
 
 ## Warning, always returns 0.
-## @returns millimeters
+## @returns centimeters
 func read() -> float:
 	return self.config.min_distance
 
 ## This sensor is always ready to give you nothing
 func is_ready() -> bool:
 	return self.config.poll_interval == 0
+
+## Indicates that the adapter has nothing going on.
+func _bind_debug_ui(container: GridContainer) -> void:
+	## Clear existing UI
+	for child in container.get_children():
+		child.queue_free()
+	
+	## Setup for centered text
+	container.columns = 1
+
+	var label = Label.new()
+	label.text = "No distance sensor adapter"
+	label.add_theme_font_size_override("font_size", 12)
+	
+	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	label.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	container.add_child(label)

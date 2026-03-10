@@ -44,23 +44,29 @@ func build() -> DistanceSensor:
 	var filter = null
 	
 	if _config != null:
+		print("Distance sensor builder: From config")
 		adapter = DistanceSensorAdapterFactory.create(_config)
 		filter = DistanceFilterStrategyFactory.create(_config)
 	else:
+		print("Distance sensor builder: No config passed. Setting to default.")
 		_config = DistanceSensorConfig.new()
 	
-	if _filter_type != null:
+	if _filter_type != "":
+		print("Distance sensor builder: Dedicated filter type specified, overwrites config if any")
 		_config.filter_type = _filter_type
 		filter = DistanceFilterStrategyFactory.create(_config)
 		
-	if _adapter_type != null:
+	if _adapter_type != "":
+		print("Distance sensor builder: Dedicated adapter type specified, overwrites config if any")
 		_config.adapter_type = _adapter_type
 		adapter = DistanceSensorAdapterFactory.create(_config)
 	
 	if _passed_adapter != null:
+		print("Distance sensor builder: From adapter object. Overwrites config / dedicated adapter type if any.")
 		adapter = _passed_adapter
 		
 	if _passed_filter != null:
+		print("Distance sensor builder: From filter object. Overwrites config / dedicated filter type if any.")
 		filter = _passed_filter
 	
 	return DistanceSensor.new(filter, adapter)

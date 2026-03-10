@@ -7,7 +7,7 @@ extends VehicleBuilder
 
 var driving: DrivingAdapter
 var steering: SteeringAdapter
-var distance: DistanceSensorAdapter
+var distance: DistanceSensor
 var line: LineSensorAdapter
 var initial_state: GDScript
 
@@ -29,7 +29,7 @@ func with_steering_config(config: SteeringConfig) -> PiCarBuilder:
 	return self
 	
 func with_distance_config(config: DistanceSensorConfig) -> PiCarBuilder:
-	self.distance = DistanceSensorAdapterFactory.create(config)
+	self.distance = DistanceSensorFactory.create(config)
 	return self
 	
 func with_line_config(config: LineSensorConfig) -> PiCarBuilder:
