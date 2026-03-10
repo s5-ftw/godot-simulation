@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 	wheel_fr.rotation.y = steer_angle
 	
 	# Vehicle angular rotation
-	var yaw_rate = speed * (tan(steer_angle) / wheel_base)
+	var yaw_rate = (speed * (tan(steer_angle) / wheel_base))
 	print(wheel_base)
 	rotation.y += yaw_rate * delta
 	
