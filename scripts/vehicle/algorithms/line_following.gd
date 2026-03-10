@@ -1,7 +1,7 @@
 class_name LineFollowing
 
 # Controller parameters
-var Kp = 0.05         # proportional gain
+var Kp = 0.125         # proportional gain
 var Kd = 0.0001         # derivative gain
 var max_speed = 0.9  # max forward speed
 var min_speed = 0.1  # minimum speed when turning sharply

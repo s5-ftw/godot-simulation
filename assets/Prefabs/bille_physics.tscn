@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dg5i7atiagb4e"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_iys2i"]
+
+[node name="Bille" type="RigidBody3D" unique_id=1669035871]
+transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, 0, 0, 0)
+mass = 10.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=807238928]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+shape = SubResource("SphereShape3D_iys2i")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="." unique_id=734871464]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+radial_segments = 32
+rings = 32
