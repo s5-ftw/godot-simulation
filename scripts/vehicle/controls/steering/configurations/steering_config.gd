@@ -39,8 +39,8 @@ func _init(
 	angle_per_second=428,
 	adapter_type_value="none",
 	ui_debug=true,
-	left_angle_max = -70,
-	right_angle_max = 70,
+	left_angle_max = -45,
+	right_angle_max = 45,
 	wheel_base = 13,
 	track_width = 9
 ):
