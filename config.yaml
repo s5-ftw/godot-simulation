@@ -12,7 +12,7 @@ line_sensor:
   sensor_amount: 5
   adapter_type: "simulated"
   cone_radius: 0.1
-  cone_height: 0.2
+  cone_height: 1
   ui_debug: true
 
 steering:
@@ -26,3 +26,10 @@ driving:
   real_minimum: -10
   real_stopped: 67
   adapter_type: "simulated"
+  maximum_speed: 2
+  motor_force: 0.08
+  motor_count: 2
+  motor_usable_torque_ratio: 0.5
+  vehicle_weight: 0.5
+  wheel_friction: 0.5
+  wheel_radius: 3.3
