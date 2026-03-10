@@ -7,6 +7,7 @@ extends RefCounted
 class_name DistanceSensorAdapter
 
 var config: DistanceSensorConfig
+var _bound_raycast: RayCast3D
 
 func _init(
 	config: DistanceSensorConfig
@@ -14,9 +15,9 @@ func _init(
 	self.config = config
 
 ## Obtains a distance from the distance sensor. Delays may vary.
-## Distances must be in MILLIMETERS.
+## Distances must be in CENTIMETERS.
 ##
-## @returns millimeters
+## @returns centimeters
 func read() -> float:
 	push_error("read() must be implemented in the distance sensor adapter")
 	return 0.0
@@ -30,3 +31,7 @@ func read() -> float:
 func is_ready() -> bool:
 	push_error("is_ready() must be implemented in the distance sensor adapter")
 	return true
+
+## Call this after instantiation to bind the adapter to its simulated raycast.
+func bind(ray: RayCast3D) -> void:
+	self._bound_raycast = ray

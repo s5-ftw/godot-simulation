@@ -1,9 +1,10 @@
 distance_sensor:
-  adapter_type: "none"
-  min_distance: -67
+  adapter_type: "simulated"
+  min_distance: 3
   max_distance: 420
   poll_interval: 60
-  filter_type: "low-pass"
+  precision: 0.3
+  filter_type: "none"
   sensor_type: "SRF05"
 
 line_sensor:
