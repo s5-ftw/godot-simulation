@@ -6,6 +6,7 @@ var manager: VehicleManager
 
 @onready var debug_ui_container = $DebugElementContainer
 @onready var line_sensor_area = $"PiCar-col/PiCar#line_follower_sensor"
+@onready var distance_sensor_raycast = $"PiCar-col/PiCar#RayCast3D"
 
 # Engine functions
 # Called when the node enters the scene tree for the first time.
@@ -17,6 +18,7 @@ func _ready():
 	manager = VehicleFactory.create("SunFounder PiCar")
 	manager.bind_debug_ui(debug_ui_container)
 	manager.adapters.line_sensor.bind(line_sensor_area.get_child(0))
+	manager.adapters.distance_sensor._adapter.bind(distance_sensor_raycast)
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -41,12 +43,11 @@ func _on_connect_pressed():
 		else:
 			get_node("AspectRatioContainer/GridContainer/lb_ConnectionStatusPackets").text = "Wrong IP Address!"
 
-
 func _on_check_box_toggled(toggled_on):
 	if toggled_on:
 		$GridContainer/le_IpAdress.text = "127.0.0.1"
 		get_node("NetworkFSM").current_state = $NetworkFSM/NetworkInitState
-		
-		
+
 func _on_btn_test_pressed():
-	print(manager.adapters.line_sensor.read())
+	print("Line sensor: ", manager.adapters.line_sensor.read())
+	print("Distance: ", manager.adapters.distance_sensor.read())

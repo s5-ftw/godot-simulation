@@ -3,13 +3,13 @@ class_name VehicleAdapters
 
 var driving: DrivingAdapter
 var steering: SteeringAdapter
-var distance_sensor: DistanceSensorAdapter
+var distance_sensor: DistanceSensor
 var line_sensor: LineSensorAdapter
 
 func _init(
 	driving: DrivingAdapter,
 	steering: SteeringAdapter,
-	distance: DistanceSensorAdapter,
+	distance: DistanceSensor,
 	line: LineSensorAdapter
 ) -> void:
 	self.driving = driving
