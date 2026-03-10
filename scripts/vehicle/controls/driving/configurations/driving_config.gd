@@ -37,7 +37,7 @@ func _init(
 	motor_force=0.078,
 	motor_count=2,
 	motor_usable_torque_ratio=0.35,
-	vehicle_weight=1.3,
+	vehicle_weight=0.5,
 	wheel_friction=0.6,
 	wheel_radius=3.3,
 	maximum_speed = 2
