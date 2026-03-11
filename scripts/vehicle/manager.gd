@@ -6,6 +6,7 @@ class_name VehicleManager
 var state_manager: VehicleStateManager
 var adapters: VehicleAdapters
 var _was_added: bool
+var _current_state_label: Label = Label.new()
 
 func _init(
 	manager: VehicleStateManager,
@@ -82,10 +83,30 @@ func _add_debug_column_header(container: GridContainer) -> void:
 	header_panel.add_child(label)
 	container.add_child(header_panel)
 	
+	var grid_container = GridContainer.new()
+			
+	## Automatic background color
+	var panel = PanelContainer.new()
+	panel.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+			
+	style = StyleBoxFlat.new()
+	style.bg_color = Color(0.2, 0.2, 0.2, 0.75)
+	style.set_content_margin_all(5) 
+	panel.add_theme_stylebox_override("panel", style)
+			
+	grid_container.custom_minimum_size = Vector2(10, 10)
+	grid_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	
+	_current_state_label = Label.new()
+	_current_state_label.text = "NO STATE"
+	panel.add_child(grid_container)
+	grid_container.add_child(_current_state_label)
+	container.add_child(panel)
 
 ## Executes the current state.
-func execute():
-	return self.state_manager.execute()
+func execute(delta):
+	_current_state_label.text = self.state_manager.current()
+	return self.state_manager.execute(delta)
 
 ## Tells the vehicle to stop.
 func stop():

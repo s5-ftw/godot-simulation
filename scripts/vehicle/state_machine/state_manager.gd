@@ -13,13 +13,13 @@ func _init(
 	self.current_state = initial_state.new(self)
 
 ## Executes the current state.
-func execute():
-	return current_state.execute()
+func execute(delta):
+	return current_state.execute(delta)
 
 ## Tells you which state is currently stored in the state machine.
 func current() -> String:
 	return self.current_state.get_name()
 
 ## Sets the current state with a new state
-func set_state(state: VehicleState):
+func set_state(state):
 	self.current_state = state.new(self)

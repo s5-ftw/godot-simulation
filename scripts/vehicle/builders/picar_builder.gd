@@ -37,7 +37,7 @@ func with_line_config(config: LineSensorConfig) -> PiCarBuilder:
 	return self
 	
 func with_initial_state(state: GDScript) -> PiCarBuilder:
-	print("with initial state")
+	print("with initial state: ", state.get_name())
 	self.initial_state = state
 	return self
 
