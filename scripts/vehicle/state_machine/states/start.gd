@@ -18,8 +18,7 @@ func execute(delta):
 	
 	## Stopped detecting the start line. Regular operation can start
 	if !on_start_line and driving:
-		## REPLACE WITH END STATE WHEN IT EXISTS
-		self.manager.set_state(DoNothingState)
+		self.manager.set_state(FollowLineState)
 	return
 
 func all_sensors_on(sensor: int) -> bool:
