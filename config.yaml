@@ -1,7 +1,7 @@
 distance_sensor:
   adapter_type: "simulated"
   min_distance: 3
-  max_distance: 420
+  max_distance: 820
   poll_interval: 60
   precision: 0.3
   filter_type: "none"
@@ -16,15 +16,9 @@ line_sensor:
   ui_debug: true
 
 steering:
-  real_middle: 0
-  real_maximum: 420
-  real_minimum: -67
   adapter_type: "simulated"
 
 driving:
-  real_maximum: 10
-  real_minimum: -10
-  real_stopped: 67
   adapter_type: "simulated"
   maximum_speed: 2
   motor_force: 0.08
@@ -33,3 +27,4 @@ driving:
   vehicle_weight: 0.5
   wheel_friction: 0.5
   wheel_radius: 6.5
+  maximum_acceleration: 0.08
