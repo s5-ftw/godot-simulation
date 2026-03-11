@@ -49,7 +49,6 @@ func _process(delta):
 	if key_pressed:
 		return
 
-	print(manager.state_manager.current_state.get_name())
 	manager.execute(delta)
 
 # Signals functions
