@@ -31,13 +31,13 @@ func _input(event):
 func free_cam_move(delta):
 	var direction = Vector3.ZERO
 
-	if Input.is_key_pressed(KEY_UP):
+	if Input.is_key_pressed(KEY_W):
 		direction -= transform.basis.z
-	if Input.is_key_pressed(KEY_DOWN):
+	if Input.is_key_pressed(KEY_S):
 		direction += transform.basis.z
-	if Input.is_key_pressed(KEY_LEFT):
+	if Input.is_key_pressed(KEY_A):
 		direction -= transform.basis.x
-	if Input.is_key_pressed(KEY_RIGHT):
+	if Input.is_key_pressed(KEY_D):
 		direction += transform.basis.x
 
 	if direction != Vector3.ZERO:
