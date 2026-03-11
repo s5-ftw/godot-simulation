@@ -8,8 +8,14 @@ var min_speed = 0.1  # minimum speed when turning sharply
 
 # Keep track of last error for derivative
 var last_error = 0
+var adapters: VehicleAdapters
 
-func execute(delta, adapters: VehicleAdapters):
+func _init(
+	adapters: VehicleAdapters
+) -> void:
+	self.adapters = adapters
+
+func execute(delta):
 	var sensor_value = adapters.line_sensor.read()
 	
 	if sensor_value == 0:
@@ -44,3 +50,6 @@ func execute(delta, adapters: VehicleAdapters):
 	# Send to motors
 	adapters.driving.set_driving(speed)
 	adapters.steering.set_steering(steering)
+	
+func lost_it() -> bool:
+	return self.adapters.line_sensor.read() == 0

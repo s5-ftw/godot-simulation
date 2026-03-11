@@ -9,8 +9,6 @@ var manager: VehicleManager
 @onready var vehicle_body = $"PiCar-col"
 @onready var distance_sensor_raycast = $"PiCar-col/PiCar#RayCast3D"
 
-var lineAlgorithm: LineFollowing = LineFollowing.new()
-
 # Engine functions
 # Called when the node enters the scene tree for the first time.
 func _ready():
