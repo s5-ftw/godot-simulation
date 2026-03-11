@@ -43,7 +43,7 @@ func _init(
 	wheel_friction=0.6,
 	wheel_radius=3.3,
 	maximum_speed = 2,
-	maximum_acceleration = 0.010
+	maximum_acceleration = 0.1
 ):
 	self.real_stopped = real_stopped_speed
 	self.real_maximum = real_max_speed

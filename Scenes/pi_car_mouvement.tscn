@@ -59,7 +59,7 @@ script = ExtResource("6_qcisq")
 script = SubResource("GDScript_d2gei")
 
 [node name="Floor" type="CSGBox3D" parent="." unique_id=836285853]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053, -0.25, -0.027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.1, 1.9902499, -0.25, 1.8016026)
 size = Vector3(5, 0.5, 5)
 material = SubResource("StandardMaterial3D_y2p80")
 
@@ -118,7 +118,7 @@ size_flags_vertical = 0
 layout_mode = 2
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1442398653]
-transform = Transform3D(1, 0, 0, 0, 17.754208, 0, 0, 0, 14.988642, 1.2759244, 0.0713751, -7.7561264)
+transform = Transform3D(-4.371139e-08, 0, 14.988642, 0, 17.754208, 0, -1, 0, -6.5517435e-07, 1.7857509, 0.0713751, -2.7325773)
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="CSGBox3D" unique_id=207641978]
@@ -127,7 +127,7 @@ size = Vector3(0.1, 0.1, 0.1)
 shape = SubResource("ConcavePolygonShape3D_ngkjk")
 
 [node name="Bille" parent="." unique_id=1669035871 instance=ExtResource("7_ilb10")]
-transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, 1.8172746, 0.8253652, -2.1545715)
+transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, 1.8662875, 0.8253652, 2.3344536)
 mass = 0.1
 gravity_scale = 8.0
 
@@ -142,7 +142,7 @@ size_flags_horizontal = 8
 size_flags_vertical = 0
 
 [node name="PiCar-col" parent="." unique_id=568931496 instance=ExtResource("8_ea1tu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8168435, 0.68843484, -0.7693923)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8168435, 0.68843484, 3.7491484)
 
 [node name="PiCar#line_follower_sensor" parent="PiCar-col" unique_id=1217243279 instance=ExtResource("9_v2con")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 0, -0.492, -2.053)

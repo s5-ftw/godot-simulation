@@ -11,7 +11,7 @@ func execute(delta):
 	## TODO: Calculate stopping distance for max acceleration.
 	if distance < self.manager.adapters.distance_sensor.config.max_distance - 100:
 		## Go stop at the obstacle
-		self.manager.set_state(DoNothingState) ## TODO: Replace with Stop at obstacle state
+		self.manager.set_state(DodgeObsticalState) ## TODO: Replace with Stop at obstacle state
 		
 	if self.manager.adapters.line_sensor.read() == 0:
 		## We lost the line... gotta try to find it back.
