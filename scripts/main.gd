@@ -11,9 +11,35 @@ var manager: VehicleManager
 
 var lineAlgorithm: LineFollowing = LineFollowing.new()
 
+@onready var scene_menu = $"GridContainer/SceneMenu"
+
+var scenes = []
+
+func load_scenes():
+	var dir = DirAccess.open("res://Scenes")
+	if dir:
+		dir.list_dir_begin()
+		var file_name = dir.get_next()
+		var current_scene = get_tree().current_scene.scene_file_path
+		var index = 0
+
+		while file_name != "":
+			if !dir.current_is_dir() and file_name.ends_with(".tscn"):
+				var path = "res://Scenes/" + file_name
+				scenes.append(path)
+				var display_name = file_name.replace(".tscn","")
+				scene_menu.add_item(display_name)
+				# Check if this is the current scene
+				if path == current_scene:
+					scene_menu.select(index)
+				index += 1
+			file_name = dir.get_next()
+		dir.list_dir_end()
+
 # Engine functions
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	load_scenes()
 	NetworkIPAddrRegex.compile(r'^((25[0-5]|(2[0-4]|1\d|[1-9]|)\d)(\.(?!$)|$)){4}$')
 	#get_node("NetworkFSM").current_state = $NetworkFSM/NetworkInitState
 	
@@ -79,12 +105,7 @@ func _on_btn_test_pressed():
 	print("Line sensor: ", manager.adapters.line_sensor.read())
 	print("Distance: ", manager.adapters.distance_sensor.read())
 
-
-func _on_btn_change_scene_pressed() -> void:
-	print("scene: ", get_tree().current_scene.scene_file_path)
-
-	if get_tree().current_scene.scene_file_path == "res://Scenes/Simulation_line_follower.tscn":
-		get_tree().change_scene_to_file("res://Scenes/pi_car_mouvement.tscn")
-	else:
-		get_tree().change_scene_to_file("res://Scenes/Simulation_line_follower.tscn")
-		
+func _on_scene_menu_item_selected(index):
+	var scene_path = scenes[index]
+	print("Scene found:", scene_path)
+	get_tree().change_scene_to_file(scene_path)

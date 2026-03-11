@@ -114,12 +114,11 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="btn_change_scene" type="Button" parent="GridContainer" unique_id=1444833407]
+[node name="SceneMenu" type="OptionButton" parent="GridContainer" unique_id=1139902816]
 layout_mode = 2
-text = "Change scene"
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1442398653]
-transform = Transform3D(1, 0, 0, 0, 17.754208, 0, 0, 0, 14.988642, 2.818313, 0.0713751, 0.100219)
+transform = Transform3D(1, 0, 0, 0, 17.754208, 0, 0, 0, 14.988642, 1.2759244, 0.0713751, -7.7561264)
 size = Vector3(0.1, 0.1, 0.1)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="CSGBox3D" unique_id=207641978]
@@ -130,6 +129,7 @@ shape = SubResource("ConcavePolygonShape3D_ngkjk")
 [node name="Bille" parent="." unique_id=1669035871 instance=ExtResource("7_ilb10")]
 transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, 1.8172746, 0.8253652, -2.1545715)
 mass = 0.1
+gravity_scale = 8.0
 
 [node name="DebugElementContainer" type="GridContainer" parent="." unique_id=517806483]
 anchors_preset = 1
@@ -162,4 +162,4 @@ hit_from_inside = true
 [connection signal="pressed" from="GridContainer/btn_Connect" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="GridContainer/btn_Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="GridContainer/btn_test" to="." method="_on_btn_test_pressed"]
-[connection signal="pressed" from="GridContainer/btn_change_scene" to="." method="_on_btn_change_scene_pressed"]
+[connection signal="item_selected" from="GridContainer/SceneMenu" to="." method="_on_scene_menu_item_selected"]
