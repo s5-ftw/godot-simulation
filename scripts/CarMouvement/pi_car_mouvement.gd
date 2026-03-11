@@ -1,45 +1,35 @@
 extends Node3D
 
 @export var speed = 0.0
-@export var steer_angle = 0.0
-
-@export var max_acceleration = 8.0
+@export var max_speed = 10.0
+@export var acceleration = 5.0
+@export var decceleration = acceleration
+@export var turn_speed = 0.25
+@export var max_wheel_angle = 30.0
 
 @onready var wheel_fl = $WheelFrontLeft
 @onready var wheel_fr = $WheelFrontRight
 
+# Make the wheel seem like they are turning
+@export var steer_angle = 0.0
+
+# In centimeters, whats the distance between both sets of wheels?
 @export var wheel_base = 0.0
 
-var velocity: Vector3 = Vector3.ZERO
-
-
 func _process(delta: float) -> void:
-
 	var distance = wheel_fl.global_position.distance_to(wheel_fr.global_position)
 	wheel_base = distance
-
-	# Wheel visuals
+	
+	# Wheel mesh turning
 	wheel_fl.rotation.y = steer_angle
 	wheel_fr.rotation.y = steer_angle
-
-	var forward = -transform.basis.z
-
-	# Desired velocity from user input
-	var desired_velocity = forward * speed
-
-	# Required velocity change
-	var accel = (desired_velocity - velocity) / delta
-
-	# HARD LIMIT TOTAL ACCELERATION
-	if accel.length() > max_acceleration:
-		accel = accel.normalized() * max_acceleration
-
-	# Apply
-	velocity += accel * delta
-
-	# Move
-	position += velocity * delta
-
-	# Turning based on current velocity
-	var yaw_rate = (velocity.length() * (tan(steer_angle) / wheel_base))
+	
+	# Vehicle angular rotation
+	var yaw_rate = (speed * (tan(steer_angle) / wheel_base))
 	rotation.y += yaw_rate * delta
+
+	speed = clamp(speed, -max_speed, max_speed)
+		
+	# Move in the direction the car faces
+	var forward = -transform.basis.z
+	position += forward * speed * delta
