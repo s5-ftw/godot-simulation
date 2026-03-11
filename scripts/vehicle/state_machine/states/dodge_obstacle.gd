@@ -1,5 +1,5 @@
 ## A state that avoids obstacle
-class_name DodgeObsticalState
+class_name DodgeobstacleState
 extends VehicleState
 
 var dodge := ObstacleDodge.new()
@@ -30,4 +30,4 @@ func execute(delta):
 
 ## Returns the name of the current state.
 func get_name() -> String:
-	return "dodge_obstical"
+	return "dodge_obstacle"
