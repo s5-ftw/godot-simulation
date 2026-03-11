@@ -39,7 +39,7 @@ func execute(delta):
 	
 	## You're within safety margin of the obstacle. Try to avoid it now.
 	if self.stopping.impossible_to_move():
-		self.manager.set_state(DodgeobstacleState) ## TODO: Call avoid obstacle.
+		self.manager.set_state(DodgeobstacleState) ## Call avoid obstacle.
 		return
 
 ## Returns the name of the current state.
