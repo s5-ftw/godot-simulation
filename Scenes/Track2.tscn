@@ -1,10 +1,10 @@
-[gd_scene format=3 uid="uid://bx548pa44tywn"]
+[gd_scene format=3 uid="uid://chdg7nl8sri4x"]
 
 [ext_resource type="Script" uid="uid://tq58jihq45r4" path="res://scripts/main.gd" id="1_k67bo"]
-[ext_resource type="PackedScene" uid="uid://djiapwje8ri6j" path="res://parcours.tscn" id="1_tbnjb"]
 [ext_resource type="PackedScene" uid="uid://46enj0k5f3" path="res://assets/Prefabs/pi_car_prefab_rear_axel.tscn" id="2_k67bo"]
 [ext_resource type="PackedScene" uid="uid://dg5i7atiagb4e" path="res://assets/Prefabs/bille_physics.tscn" id="3_ylis6"]
 [ext_resource type="PackedScene" uid="uid://xroxh5wjbwp6" path="res://line_follower_sensor.tscn" id="4_ylis6"]
+[ext_resource type="PackedScene" uid="uid://c277gln5m82a0" path="res://assets/New_Track/Track2.blend" id="5_k8wn6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ylis6"]
 sky_top_color = Color(0.635294, 0.756863, 0.901961, 1)
@@ -21,9 +21,6 @@ sky = SubResource("Sky_nfout")
 
 [node name="SimulationLineFollower" type="Node3D" unique_id=1660903673]
 script = ExtResource("1_k67bo")
-
-[node name="parcours" parent="." unique_id=1083108912 instance=ExtResource("1_tbnjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7870582, 0, -1.6773009)
 
 [node name="PiCar-col" parent="." unique_id=568931496 instance=ExtResource("2_k67bo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010874748, 0.7884341, 2.089549)
@@ -86,7 +83,7 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="SceneMenu" type="OptionButton" parent="GridContainer" unique_id=1099193758]
+[node name="SceneMenu" type="OptionButton" parent="GridContainer" unique_id=876887570]
 layout_mode = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=118415301]
@@ -101,5 +98,8 @@ offset_bottom = 209.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
+
+[node name="Track2" parent="." unique_id=1014814658 instance=ExtResource("5_k8wn6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21, -0.205812, 0.024)
 
 [connection signal="item_selected" from="GridContainer/SceneMenu" to="." method="_on_scene_menu_item_selected"]
