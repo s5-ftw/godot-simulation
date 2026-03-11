@@ -3,17 +3,23 @@ class_name DodgeobstacleState
 extends VehicleState
 
 var dodge := ObstacleDodge.new()
-var dodge_state = "idle"
+var dodge_state = "backup"
 
 var following: LineFollowing
+var stopping: Stopping
 
 func setup() -> void:
 	self.following = LineFollowing.new(self.manager.adapters)
+	self.stopping = Stopping.new(self.manager.adapters)
 	
 func execute(delta):
+	self.stopping.update(delta)
 	match dodge_state:
+		"backup":
+			if(dodge.execute_backup(delta, self.manager.adapters)):
+				dodge_state = "idle"
 		"idle":
-			if(dodge.execute_idle(delta, self.manager.adapters)):
+			if(dodge.execute_idle(delta, self.manager.adapters) && self.stopping.speed >= 0):
 				dodge_state = "turning_right"
 		"turning_right":
 			if(dodge.execute_turning_right(delta, self.manager.adapters)):

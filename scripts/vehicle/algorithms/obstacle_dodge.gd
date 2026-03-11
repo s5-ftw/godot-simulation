@@ -5,7 +5,7 @@ var dodge_speed = 0.7           # speed during dodge maneuver
 var dodge_steering_right = 0.8  # steering angle to go right
 var recovery_steering = -0.8    # steering to return to line
 var max_dodge_time = 5000.0        # max time to spend dodging (seconds)
-var forward_distance = 50.0     # extra distance to travel past obstacle
+var backup_distance = 90
 
 # Tracking distances & orientation
 var initial_obstacle_distance = 0.0   # distance at moment dodge started
@@ -23,10 +23,18 @@ var distance_traveled = 0.0     # distance traveled since start of dodge
 func _current_yaw(adapters: VehicleAdapters) -> float:
 	return adapters.driving._vehicle_node.rotation.y
 
+func execute_backup(delta, adapters: VehicleAdapters) -> bool:
+	var sensor_value = adapters.distance_sensor.read()
+	adapters.driving.set_driving(-dodge_speed)
+	if(sensor_value >= backup_distance):
+		return true
+	return false
+
 func execute_idle(delta, adapters: VehicleAdapters) -> bool:
 	var sensor_value = adapters.distance_sensor.read()
+	adapters.driving.set_driving(dodge_speed)
 	start_dodge(sensor_value, adapters)
-	state_timer += delta
+	#state_timer += delta
 	
 	return true
 	
