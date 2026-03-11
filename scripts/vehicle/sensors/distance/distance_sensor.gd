@@ -30,6 +30,13 @@ func read() -> float:
 		self._old_raw_value = self._filter.apply(_old_raw_value)
 	return self._old_raw_value
 
+func is_ready() -> float:
+	return self._adapter.is_ready()
+
+func above_range() -> bool:
+	self.read()
+	return self._old_raw_value > (self.config.max_distance - self.config.precision * 2)
+
 func _bind_debug_ui(container: GridContainer) -> void:
 	if self._adapter.has_method("_bind_debug_ui"):
 		self._adapter._bind_debug_ui(container)
