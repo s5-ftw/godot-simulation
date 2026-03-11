@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://46enj0k5f3" path="res://assets/Prefabs/pi_car_prefab_rear_axel.tscn" id="8_ea1tu"]
 [ext_resource type="PackedScene" uid="uid://xroxh5wjbwp6" path="res://line_follower_sensor.tscn" id="9_v2con"]
 [ext_resource type="PackedScene" uid="uid://djiapwje8ri6j" path="res://parcours.tscn" id="10_aytoq"]
+[ext_resource type="Script" uid="uid://cxnuwmawtxiuw" path="res://scripts/CamMove/FreeCamMove.gd" id="11_1n07r"]
 
 [sub_resource type="GDScript" id="GDScript_d2gei"]
 
@@ -117,6 +118,10 @@ size_flags_vertical = 0
 [node name="SceneMenu" type="OptionButton" parent="GridContainer" unique_id=1139902816]
 layout_mode = 2
 
+[node name="FreeCamCheckBox" type="CheckButton" parent="GridContainer" unique_id=1613489598]
+layout_mode = 2
+text = "FreeCam"
+
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1442398653]
 transform = Transform3D(-4.371139e-08, 0, 14.988642, 0, 17.754208, 0, -1, 0, -6.5517435e-07, 1.7857509, 0.0713751, -2.7325773)
 size = Vector3(0.1, 0.1, 0.1)
@@ -158,8 +163,13 @@ hit_from_inside = true
 
 [node name="parcours" parent="." unique_id=1083108912 instance=ExtResource("10_aytoq")]
 
+[node name="FreeCam" type="Camera3D" parent="." unique_id=1586799762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 4.159478, 2.5829535, 3.2318501)
+script = ExtResource("11_1n07r")
+
 [connection signal="toggled" from="GridContainer/CheckBox" to="." method="_on_check_box_toggled"]
 [connection signal="pressed" from="GridContainer/btn_Connect" to="." method="_on_connect_pressed"]
 [connection signal="pressed" from="GridContainer/btn_Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="GridContainer/btn_test" to="." method="_on_btn_test_pressed"]
 [connection signal="item_selected" from="GridContainer/SceneMenu" to="." method="_on_scene_menu_item_selected"]
+[connection signal="toggled" from="GridContainer/FreeCamCheckBox" to="." method="_on_check_button_toggled"]

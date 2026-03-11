@@ -9,6 +9,8 @@ var manager: VehicleManager
 @onready var vehicle_body = $"PiCar-col"
 @onready var distance_sensor_raycast = $"PiCar-col/PiCar#RayCast3D"
 @onready var scene_menu = $"GridContainer/SceneMenu"
+@onready var vehicle_camera = $"PiCar-col/PiCar#Camera3D"
+@onready var free_camera = $"FreeCam"
 
 var scenes = []
 
@@ -102,3 +104,10 @@ func _on_scene_menu_item_selected(index):
 	var scene_path = scenes[index]
 	print("Scene found:", scene_path)
 	get_tree().change_scene_to_file(scene_path)
+
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		free_camera.make_current()
+	else:
+		vehicle_camera.make_current()
