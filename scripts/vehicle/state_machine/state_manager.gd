@@ -22,4 +22,6 @@ func current() -> String:
 
 ## Sets the current state with a new state
 func set_state(state):
+	self.current_state.leaving()
 	self.current_state = state.new(self)
+	self.current_state.setup()
