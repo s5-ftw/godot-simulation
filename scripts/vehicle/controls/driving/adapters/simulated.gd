@@ -13,6 +13,7 @@ var max_speed: float = 0
 
 func bind(body: Node3D) -> void:
 	self._vehicle_node = body
+	body.max_acceleration = self.config.maximum_acceleration
 	self._set_physics()
 	
 	# Can't use _process(data). Because first time doing GoDot = not knowing proper developpement technique for it.
