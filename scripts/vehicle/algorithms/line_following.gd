@@ -17,13 +17,7 @@ func _init(
 
 func execute(delta):
 	var sensor_value = adapters.line_sensor.read()
-	
-	if sensor_value == 0:
-		# Line lost: stop or try to turn in last known direction
-		adapters.driving.set_driving(0)
-		adapters.steering.set_steering(0)
-		return
-	
+
 	# Calculate error based on which sensors are active
 	var weights = [-2, -1, 0, 1, 2]
 	var error: float = 0.0
@@ -44,12 +38,19 @@ func execute(delta):
 	# Steering = proportional + derivative
 	var steering = clamp(Kp * error + Kd * derivative, -1, 1)
 	
+	## We lost the line... don't reset the steering otherwise you'll go to infinity forwards
+	print(sensor_value)
+	if sensor_value == 0:
+		print(self.adapters.steering.get_current())
+		steering = self.adapters.steering.get_current()
+		
+	
 	# Scale speed down for sharp turns
 	var speed = max_speed * (1 - abs(steering))
 	
 	# Send to motors
 	adapters.driving.set_driving(speed)
 	adapters.steering.set_steering(steering)
-	
+
 func lost_it() -> bool:
 	return self.adapters.line_sensor.read() == 0

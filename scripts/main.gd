@@ -50,27 +50,23 @@ func _ready():
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var key_pressed = false
-	if Input.is_key_pressed(KEY_W):
-		manager.adapters.driving.set_driving(1)
-		key_pressed = true
-	elif Input.is_key_pressed(KEY_S):
-		manager.adapters.driving.set_driving(-1)
-		key_pressed = true
-	else:
-		manager.adapters.driving.set_driving(0)
+	#var key_pressed = false
+	#if Input.is_key_pressed(KEY_W):
+		#manager.adapters.driving.set_driving(1)
+		#key_pressed = true
+	#elif Input.is_key_pressed(KEY_S):
+		#manager.adapters.driving.set_driving(-1)
+		#key_pressed = true
+		#
+	#if Input.is_key_pressed(KEY_A):
+		#key_pressed = true
+		#manager.adapters.steering.set_steering(-1)
+	#elif Input.is_key_pressed(KEY_D):
+		#manager.adapters.steering.set_steering(1)
+		#key_pressed = true
 		
-	if Input.is_key_pressed(KEY_A):
-		key_pressed = true
-		manager.adapters.steering.set_steering(-1)
-	elif Input.is_key_pressed(KEY_D):
-		manager.adapters.steering.set_steering(1)
-		key_pressed = true
-	else:
-		manager.adapters.steering.set_steering(0)
-		
-	if key_pressed:
-		return
+	#if key_pressed:
+		#return
 
 	manager.execute(delta)
 

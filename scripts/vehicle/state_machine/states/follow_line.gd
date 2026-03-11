@@ -21,7 +21,7 @@ func execute(delta):
 
 	## We lost the line... gotta try to find it back.
 	if following.lost_it():
-		self.manager.set_state(DoNothingState) ## TODO: Replace with find line state.
+		self.manager.set_state(FindLineState)
 
 ## Returns the name of the current state.
 func get_name() -> String:
