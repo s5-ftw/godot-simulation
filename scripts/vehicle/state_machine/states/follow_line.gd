@@ -3,18 +3,24 @@
 class_name FollowLineState
 extends VehicleState
 
+var stopping: Stopping
+var following: LineFollowing
+
+func setup() -> void:
+	self.stopping = Stopping.new(self.manager.adapters)
+	self.following = LineFollowing.new(self.manager.adapters)
+
 ## Follows the line unless something is detected
 func execute(delta):
-	LineFollowing.new().execute(delta, self.manager.adapters)
-	
-	var distance = self.manager.adapters.distance_sensor.read()
-	## TODO: Calculate stopping distance for max acceleration.
-	if distance < self.manager.adapters.distance_sensor.config.max_distance - 100:
-		## Go stop at the obstacle
-		self.manager.set_state(DodgeObsticalState) ## TODO: Replace with Stop at obstacle state
-		
-	if self.manager.adapters.line_sensor.read() == 0:
-		## We lost the line... gotta try to find it back.
+	stopping.update(delta)
+	following.execute(delta)
+
+	if stopping.will_collide() and stopping.is_ready:
+		self.manager.set_state(StopAtObstacleState)
+		return
+
+	## We lost the line... gotta try to find it back.
+	if following.lost_it():
 		self.manager.set_state(DoNothingState) ## TODO: Replace with find line state.
 
 ## Returns the name of the current state.

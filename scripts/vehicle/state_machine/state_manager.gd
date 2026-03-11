@@ -25,7 +25,6 @@ func current() -> String:
 
 ## Sets the current state with a new state
 func set_state(state):
-	var new_state_name = state.new(self).get_name()
-	print("[StateManager] Transitioning to state: ", new_state_name)
+	self.current_state.leaving()
 	self.current_state = state.new(self)
-	state_changed.emit(new_state_name)
+	self.current_state.setup()

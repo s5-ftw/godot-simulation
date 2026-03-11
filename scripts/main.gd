@@ -8,9 +8,6 @@ var manager: VehicleManager
 @onready var line_sensor_area = $"PiCar-col/PiCar#line_follower_sensor"
 @onready var vehicle_body = $"PiCar-col"
 @onready var distance_sensor_raycast = $"PiCar-col/PiCar#RayCast3D"
-
-var lineAlgorithm: LineFollowing = LineFollowing.new()
-
 @onready var scene_menu = $"GridContainer/SceneMenu"
 
 var scenes = []
