@@ -2,7 +2,7 @@
 ## Serving as a placeholder when no states were made
 class_name DoNothingState
 extends VehicleState
-	
+
 ## Does nothing at all
 func execute(delta):
 	return
