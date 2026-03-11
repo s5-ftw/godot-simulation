@@ -20,7 +20,7 @@ func execute(delta):
 	
 	## You dingus lost the line... That's more important than the obstacle.
 	if self.following.lost_it():
-		self.manager.set_state(DoNothingState) ## TODO: Call find line state
+		self.manager.set_state(FindLineState)
 		return
 	
 	if !self.stopping.is_ready:
