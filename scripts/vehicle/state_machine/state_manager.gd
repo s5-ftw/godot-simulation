@@ -2,6 +2,8 @@
 ## Executes the right state. Never call states individually.
 class_name VehicleStateManager
 
+signal state_changed(new_state: String)
+
 var current_state: VehicleState
 var adapters: VehicleAdapters
 
@@ -11,6 +13,7 @@ func _init(
 ) -> void:
 	self.adapters = adapters
 	self.current_state = initial_state.new(self)
+	print("[StateManager] Initial state: ", current())
 
 ## Executes the current state.
 func execute(delta):
