@@ -5,6 +5,11 @@ extends VehicleState
 var dodge := ObstacleDodge.new()
 var dodge_state = "idle"
 
+var following: LineFollowing
+
+func setup() -> void:
+	self.following = LineFollowing.new(self.manager.adapters)
+	
 func execute(delta):
 	match dodge_state:
 		"idle":

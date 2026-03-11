@@ -13,19 +13,17 @@ var forward_target_distance = 0.0     # same as obstacle distance
 var initial_rotation_y = 0.0          # yaw when dodge begins
 var return_start_rotation_y = 0.0     # yaw when return turning begins
 var turn_angle = deg_to_rad(50)       # 50° angle for each turn
-var returning_angle = turn_angle + turn_angle
+var returning_angle = turn_angle + (turn_angle/2)
 
 # State tracking
 var dodge_state = "idle"        # idle, turning_right, going_forward, returning
 var state_timer = 0.0           # timer for state transitions
 var distance_traveled = 0.0     # distance traveled since start of dodge
-var line_following = LineFollowing.new()
 
 func _current_yaw(adapters: VehicleAdapters) -> float:
 	return adapters.driving._vehicle_node.rotation.y
 
 func execute_idle(delta, adapters: VehicleAdapters) -> bool:
-	line_following.execute(delta, adapters)
 	var sensor_value = adapters.distance_sensor.read()
 	start_dodge(sensor_value, adapters)
 	state_timer += delta
