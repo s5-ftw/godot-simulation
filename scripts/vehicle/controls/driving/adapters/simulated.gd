@@ -164,7 +164,7 @@ func _physics_debug_ui(parent_container: GridContainer) -> void:
 	_force_label.add_theme_font_size_override("font_size", 12)
 	_force_label.text = "0"
 	container.add_child(_force_label)
-	parent_container.add_child(container)
+	#parent_container.add_child(container)
 	
 func sub_header(parent_container: GridContainer, text: String) -> void:
 	var label = Label.new()

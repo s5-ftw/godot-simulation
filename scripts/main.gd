@@ -78,3 +78,13 @@ func _on_check_box_toggled(toggled_on):
 func _on_btn_test_pressed():
 	print("Line sensor: ", manager.adapters.line_sensor.read())
 	print("Distance: ", manager.adapters.distance_sensor.read())
+
+
+func _on_btn_change_scene_pressed() -> void:
+	print("scene: ", get_tree().current_scene.scene_file_path)
+
+	if get_tree().current_scene.scene_file_path == "res://Scenes/Simulation_line_follower.tscn":
+		get_tree().change_scene_to_file("res://Scenes/pi_car_mouvement.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/Simulation_line_follower.tscn")
+		
