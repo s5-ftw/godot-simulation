@@ -26,6 +26,8 @@ func _process(delta: float) -> void:
 		#steer_angle = deg_to_rad(-max_wheel_angle)
 	#else:
 		#steer_angle = 0
+	var distance = wheel_fl.global_position.distance_to(wheel_fr.global_position)
+	wheel_base = distance
 	
 	# Wheel mesh turning
 	wheel_fl.rotation.y = steer_angle

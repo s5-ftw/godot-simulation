@@ -48,8 +48,8 @@ func _process(delta):
 		
 	if key_pressed:
 		return
-		
-	lineAlgorithm.execute(delta, manager)
+
+	manager.execute(delta)
 
 # Signals functions
 func _on_quit_pressed():

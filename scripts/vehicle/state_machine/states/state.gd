@@ -12,7 +12,7 @@ func _init(
 	self.manager = manager
 
 ## Execute the state. This essentially handles what the vehicle gotta do.
-func execute():
+func execute(delta):
 	push_error("execute() must be implemented in the state")
 	return
 
