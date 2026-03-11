@@ -8,7 +8,7 @@ static func create(type: String) -> VehicleManager:
 			var config = ConfigSingleton.get_instance().config
 			var builder = PiCarBuilder.new_builder()
 			
-			var initial_state = StartState
+			var initial_state = FollowLineState
 			
 			builder.from_config(config).with_initial_state(initial_state)
 			return builder.build()
