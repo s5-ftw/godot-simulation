@@ -16,19 +16,30 @@ extends Node3D
 # In centimeters, whats the distance between both sets of wheels?
 @export var wheel_base = 0.0
 
+@export var max_acceleration = 0.0
+
 func _process(delta: float) -> void:
 	var distance = wheel_fl.global_position.distance_to(wheel_fr.global_position)
 	wheel_base = distance
 	
+	speed = clamp(speed, -max_speed, max_speed)
+	
+	# --- Lateral acceleration limiting ---
+	var limited_steer = steer_angle
+	
+	var v2 = speed * speed
+	if v2 > 0.01:
+		var max_tan = (max_acceleration * wheel_base) / v2
+		var max_angle = atan(max_tan)
+		limited_steer = clamp(steer_angle, -max_angle, max_angle)
+	
 	# Wheel mesh turning
-	wheel_fl.rotation.y = steer_angle
-	wheel_fr.rotation.y = steer_angle
+	wheel_fl.rotation.y = limited_steer
+	wheel_fr.rotation.y = limited_steer
 	
 	# Vehicle angular rotation
-	var yaw_rate = (speed * (tan(steer_angle) / wheel_base))
+	var yaw_rate = speed * (tan(limited_steer) / wheel_base)
 	rotation.y += yaw_rate * delta
-
-	speed = clamp(speed, -max_speed, max_speed)
 		
 	# Move in the direction the car faces
 	var forward = -transform.basis.z

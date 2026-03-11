@@ -20,7 +20,7 @@ steering:
 
 driving:
   adapter_type: "simulated"
-  maximum_speed: 2
+  maximum_speed: 1
   motor_force: 0.08
   motor_count: 2
   motor_usable_torque_ratio: 0.5

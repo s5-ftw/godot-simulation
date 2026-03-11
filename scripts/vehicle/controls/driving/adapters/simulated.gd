@@ -13,7 +13,7 @@ var max_speed: float = 0
 
 func bind(body: Node3D) -> void:
 	self._vehicle_node = body
-	#body.max_acceleration = self.config.maximum_acceleration
+	body.max_acceleration = self.config.maximum_acceleration
 	self._set_physics()
 	
 	# Can't use _process(data). Because first time doing GoDot = not knowing proper developpement technique for it.
@@ -40,7 +40,7 @@ func set_driving(new: float) -> void:
 	
 func _execute_driving(delta: float) -> void:
 	# Motor force scaled by speed (simple back-EMF effect)
-	var effective_force = self.max_force * self.throttle * (1 - abs(self.velocity) / self.max_speed)
+	var effective_force = self.max_force * self.throttle * (1 - abs(self.velocity) / self.config.maximum_speed)
 
 	# Friction / drag
 	var drag = self.friction * sign(self.velocity)
@@ -49,6 +49,7 @@ func _execute_driving(delta: float) -> void:
 	var acceleration = (effective_force - drag) / self.config.vehicle_weight
 	acceleration = clamp(acceleration, -self.config.maximum_acceleration, self.config.maximum_acceleration)
 	self.velocity += acceleration * delta
+	self.velocity = clamp(self.velocity, -self.config.maximum_speed, self.config.maximum_speed)
 
 	# Prevent velocity sign flip due to drag
 	if sign(self.velocity) != sign(self.old_velocity) and effective_force == 0:
@@ -60,7 +61,7 @@ func _execute_driving(delta: float) -> void:
 	
 	_force_label.text = str(snapped(effective_force, 0.0001))
 	_acceleration_label.text = str(snapped(acceleration, 0.0001))
-	_velocity_ratio_label.text = str(snapped(self.velocity / self.max_speed, 0.0001))
+	_velocity_ratio_label.text = str(snapped(self.velocity / self.config.maximum_speed, 0.0001))
 	_speed_label.text = str(snapped(self.velocity, 0.0001))
 
 ## Calculates the physics of the vehicle, to approximate the acceleration and deacceleration.
