@@ -22,8 +22,4 @@ func current() -> String:
 
 ## Sets the current state with a new state
 func set_state(state):
-	if not state is VehicleState:
-		push_error("Passed class must extend VehicleState")
-		return
-	
 	self.current_state = state.new(self)
