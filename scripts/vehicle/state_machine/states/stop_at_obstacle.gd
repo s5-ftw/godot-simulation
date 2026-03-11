@@ -40,9 +40,9 @@ func execute(delta):
 		throttle = 0
 	
 	## You're within safety margin of the obstacle. Try to avoid it now.
-	if self.stopping.impossible_to_move():
-		if Time.get_ticks_msec() > self.wait_for_stop + 100000:
-			self.manager.set_state(DodgeobstacleState) ## Call avoid obstacle.
+	if self.stopping.impossible_to_move() and self.stopping.distance_stabelized():
+		if Time.get_ticks_msec() - self.wait_for_stop > 5000:
+			self.manager.set_state(DodgeobstacleState)
 		return
 	else:
 		self.wait_for_stop = Time.get_ticks_msec()

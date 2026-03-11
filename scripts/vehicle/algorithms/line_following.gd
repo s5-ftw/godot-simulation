@@ -39,9 +39,7 @@ func execute(delta):
 	var steering = clamp(Kp * error + Kd * derivative, -1, 1)
 	
 	## We lost the line... don't reset the steering otherwise you'll go to infinity forwards
-	print(sensor_value)
 	if sensor_value == 0:
-		print(self.adapters.steering.get_current())
 		steering = self.adapters.steering.get_current()
 		
 	
