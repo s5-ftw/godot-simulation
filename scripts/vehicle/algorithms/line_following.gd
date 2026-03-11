@@ -9,13 +9,13 @@ var min_speed = 0.1  # minimum speed when turning sharply
 # Keep track of last error for derivative
 var last_error = 0
 
-func execute(delta, manager: VehicleManager):
-	var sensor_value = manager.adapters.line_sensor.read()
+func execute(delta, adapters: VehicleAdapters):
+	var sensor_value = adapters.line_sensor.read()
 	
 	if sensor_value == 0:
 		# Line lost: stop or try to turn in last known direction
-		manager.adapters.driving.set_driving(0)
-		manager.adapters.steering.set_steering(0)
+		adapters.driving.set_driving(0)
+		adapters.steering.set_steering(0)
 		return
 	
 	# Calculate error based on which sensors are active
@@ -42,5 +42,5 @@ func execute(delta, manager: VehicleManager):
 	var speed = max_speed * (1 - abs(steering))
 	
 	# Send to motors
-	manager.adapters.driving.set_driving(speed)
-	manager.adapters.steering.set_steering(steering)
+	adapters.driving.set_driving(speed)
+	adapters.steering.set_steering(steering)
