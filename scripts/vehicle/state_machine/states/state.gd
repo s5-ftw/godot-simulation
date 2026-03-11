@@ -20,3 +20,13 @@ func execute(delta):
 func get_name() -> String:
 	push_error("get_name() must be implemented in the state.")
 	return "no state error"
+
+## Function called before your first execute(), so you can setup the state.
+## Automatically called by the state manager.
+func setup() -> void:
+	return
+
+## Called by the state manager when your state is about to change to something else.
+## The last execution of your state.
+func leaving() -> void:
+	return
