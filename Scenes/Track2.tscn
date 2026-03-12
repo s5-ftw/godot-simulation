@@ -87,6 +87,10 @@ size_flags_vertical = 0
 [node name="SceneMenu" type="OptionButton" parent="GridContainer" unique_id=876887570]
 layout_mode = 2
 
+[node name="FreeCamCheckBox" type="CheckButton" parent="GridContainer" unique_id=514547478]
+layout_mode = 2
+text = "FreeCam"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=118415301]
 environment = SubResource("Environment_d4x2x")
 
@@ -108,3 +112,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 4.159478, 2.5829535,
 script = ExtResource("6_sjk4e")
 
 [connection signal="item_selected" from="GridContainer/SceneMenu" to="." method="_on_scene_menu_item_selected"]
+[connection signal="toggled" from="GridContainer/FreeCamCheckBox" to="." method="_on_check_button_toggled"]

@@ -13,6 +13,7 @@ func _init(
 ) -> void:
 	self.adapters = adapters
 	self.current_state = initial_state.new(self)
+	self.current_state.setup()
 	print("[StateManager] Initial state: ", current())
 
 ## Executes the current state.

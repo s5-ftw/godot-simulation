@@ -16,48 +16,31 @@ extends Node3D
 # In centimeters, whats the distance between both sets of wheels?
 @export var wheel_base = 0.0
 
+@export var max_acceleration = 0.0
+
 func _process(delta: float) -> void:
-	# Turning
-	#if Input.is_key_pressed(KEY_A):
-		#rotate_y(turn_speed * speed * delta)
-		#steer_angle = deg_to_rad(max_wheel_angle)
-	#elif Input.is_key_pressed(KEY_D):
-		#rotate_y(-turn_speed * speed * delta)
-		#steer_angle = deg_to_rad(-max_wheel_angle)
-	#else:
-		#steer_angle = 0
 	var distance = wheel_fl.global_position.distance_to(wheel_fr.global_position)
 	wheel_base = distance
 	
+	speed = clamp(speed, -max_speed, max_speed)
+	
+	# --- Lateral acceleration limiting ---
+	var limited_steer = steer_angle
+	
+	var v2 = speed * speed
+	if v2 > 0.01:
+		var max_tan = (max_acceleration * wheel_base) / v2
+		var max_angle = atan(max_tan)
+		limited_steer = clamp(steer_angle, -max_angle, max_angle)
+	
 	# Wheel mesh turning
-	wheel_fl.rotation.y = steer_angle
-	wheel_fr.rotation.y = steer_angle
+	wheel_fl.rotation.y = limited_steer
+	wheel_fr.rotation.y = limited_steer
 	
 	# Vehicle angular rotation
-	var yaw_rate = (speed * (tan(steer_angle) / wheel_base))
+	var yaw_rate = speed * (tan(limited_steer) / wheel_base)
 	rotation.y += yaw_rate * delta
-	
-	# Acceleration
-	#if Input.is_key_pressed(KEY_W):
-		#speed += acceleration * delta
-	#elif Input.is_key_pressed(KEY_S):
-		#speed -= acceleration * delta
-	#else:
-		#slow_down_letting_go(delta)
-		
-	speed = clamp(speed, -max_speed, max_speed)
 		
 	# Move in the direction the car faces
 	var forward = -transform.basis.z
 	position += forward * speed * delta
-
-func slow_down_letting_go(delta: float) -> void:
-	if speed > 0:
-		speed -= decceleration * delta
-		if speed < 0:
-			speed = 0
-
-	elif speed < 0:
-		speed += decceleration * delta
-		if speed > 0:
-			speed = 0
