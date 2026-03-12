@@ -79,6 +79,10 @@ func no_worries() -> bool:
 func impossible_to_move() -> bool:
 	return self.current_distance < self.distance_safety_margin + self._adapters.distance_sensor.config.precision
 
+## We dont know when we stopped moving. This tells you.
+func distance_stabelized() -> bool:
+	return abs(self.current_distance - self.previous_distance) < self._adapters.distance_sensor.config.precision * 1.5
+
 ## Updates all the sensors and data fetched from them.
 func _gather_data() -> void:
 	self._update_speed()

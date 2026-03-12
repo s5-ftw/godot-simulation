@@ -1,9 +1,9 @@
 class_name LineFollowing
 
 # Controller parameters
-var Kp = 0.125         # proportional gain
-var Kd = 0.0001         # derivative gain
-var max_speed = 0.9  # max forward speed
+var Kp = 0.25
+var Kd = 0.08
+var max_speed = 0.6  # max forward speed
 var min_speed = 0.1  # minimum speed when turning sharply
 
 # Keep track of last error for derivative
@@ -19,7 +19,7 @@ func execute(delta):
 	var sensor_value = adapters.line_sensor.read()
 
 	# Calculate error based on which sensors are active
-	var weights = [-2, -1, 0, 1, 2]
+	var weights = [-4, -2, 0, 2, 4]
 	var error: float = 0.0
 	var active_count = 0
 	
@@ -37,16 +37,15 @@ func execute(delta):
 	
 	# Steering = proportional + derivative
 	var steering = clamp(Kp * error + Kd * derivative, -1, 1)
+	print(steering)
 	
 	## We lost the line... don't reset the steering otherwise you'll go to infinity forwards
-	print(sensor_value)
 	if sensor_value == 0:
-		print(self.adapters.steering.get_current())
 		steering = self.adapters.steering.get_current()
 		
 	
 	# Scale speed down for sharp turns
-	var speed = max_speed * (1 - abs(steering))
+	var speed = max_speed * (1 - abs(steering * 0.2))
 	
 	# Send to motors
 	adapters.driving.set_driving(speed)

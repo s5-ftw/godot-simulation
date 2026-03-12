@@ -37,11 +37,11 @@ func execute_turning_right(delta, adapters: VehicleAdapters) -> bool:
 	
 	# check accumulated yaw relative to start
 	var yaw_diff = _current_yaw(adapters) - initial_rotation_y
-	print("[yaw_diff] ", yaw_diff)
-	print("[turn_angle] ", turn_angle)
+	#print("[yaw_diff] ", yaw_diff)
+	#print("[turn_angle] ", turn_angle)
 	if abs(yaw_diff) >= abs(turn_angle):
 		dodge_state = "going_forward"
-		print("[ObstacleDodge] Turned 50° right, going straight")
+		#print("[ObstacleDodge] Turned 50° right, going straight")
 		return true
 	return false
 	
@@ -63,8 +63,8 @@ func execute_returning(delta, adapters: VehicleAdapters) -> bool:
 	
 	# stop turning after left 50° from return start
 	var yaw_diff2 = return_start_rotation_y - _current_yaw(adapters)
-	print("[yaw_diff] ", yaw_diff2)
-	print("[turn_angle] ", returning_angle)
+	#print("[yaw_diff] ", yaw_diff2)
+	#print("[turn_angle] ", returning_angle)
 	if abs(yaw_diff2) >= abs(returning_angle):
 		adapters.steering.set_steering(0)
 		dodge_state = "finished"

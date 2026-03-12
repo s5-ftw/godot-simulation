@@ -12,15 +12,15 @@ func setup() -> void:
 
 ## Follows the line unless something is detected
 func execute(delta):
-	stopping.update(delta)
-	following.execute(delta)
+	self.stopping.update(delta)
+	self.following.execute(delta)
 
-	if stopping.will_collide() and stopping.is_ready:
+	if self.stopping.will_collide() and self.stopping.is_ready:
 		self.manager.set_state(StopAtObstacleState)
 		return
 
 	## We lost the line... gotta try to find it back.
-	if following.lost_it():
+	if self.following.lost_it():
 		self.manager.set_state(FindLineState)
 
 ## Returns the name of the current state.

@@ -7,11 +7,13 @@ extends VehicleState
 var following: LineFollowing
 var stopping: Stopping
 var throttle: float = 0
+var wait_for_stop: float
 
 func setup() -> void:
 	self.stopping = Stopping.new(self.manager.adapters)
 	self.following = LineFollowing.new(self.manager.adapters)
-	throttle = 0
+	self.throttle = 0
+	self.wait_for_stop = 0
 
 ## Follows the line unless something is detected
 func execute(delta):
@@ -38,9 +40,12 @@ func execute(delta):
 		throttle = 0
 	
 	## You're within safety margin of the obstacle. Try to avoid it now.
-	if self.stopping.impossible_to_move():
-		self.manager.set_state(DodgeobstacleState) ## Call avoid obstacle.
+	if self.stopping.impossible_to_move() and self.stopping.distance_stabelized():
+		if Time.get_ticks_msec() - self.wait_for_stop > 5000:
+			self.manager.set_state(DodgeobstacleState)
 		return
+	else:
+		self.wait_for_stop = Time.get_ticks_msec()
 
 ## Returns the name of the current state.
 func get_name() -> String:
