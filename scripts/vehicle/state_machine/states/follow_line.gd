@@ -5,10 +5,12 @@ extends VehicleState
 
 var stopping: Stopping
 var following: LineFollowing
+var previous_steering: float = 0
 
 func setup() -> void:
 	self.stopping = Stopping.new(self.manager.adapters)
 	self.following = LineFollowing.new(self.manager.adapters)
+	self.previous_steering = self.manager.adapters.steering.get_current()
 
 ## Follows the line unless something is detected
 func execute(delta):
