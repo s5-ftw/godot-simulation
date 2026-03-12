@@ -10,7 +10,7 @@ func setup() -> void:
 
 ## Follows the line unless something is detected
 func execute(delta):
-	self.manager.adapters.driving.set_driving(0.1)
+	self.manager.adapters.driving.set_driving(0.5)
 	self.manager.adapters.steering.set_steering(sign(previous_steering))
 	
 	if self.manager.adapters.line_sensor.read() != 0:

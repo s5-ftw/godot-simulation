@@ -14,6 +14,9 @@ var initial_rotation_y = 0.0          # yaw when dodge begins
 var return_start_rotation_y = 0.0     # yaw when return turning begins
 var turn_angle = deg_to_rad(50)       # 50° angle for each turn
 var returning_angle = turn_angle + (turn_angle/2)
+var current_angle = 0
+var wanted_angle = 0
+var steping_angle = 0.1
 
 # State tracking
 var state_timer = 0.0           # timer for state transitions
@@ -92,4 +95,8 @@ func reset_dodge(adapters: VehicleAdapters) -> void:
 	adapters.driving.set_driving(0.0)
 	adapters.steering.set_steering(0.0)
 	print("[ObstacleDodge] Dodge maneuver complete, resuming line following")
+	
+func smooth_steering() -> void:
+	return
+	
 	
