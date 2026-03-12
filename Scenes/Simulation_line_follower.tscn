@@ -24,10 +24,16 @@ sky = SubResource("Sky_nfout")
 script = ExtResource("1_k67bo")
 
 [node name="parcours" parent="." unique_id=1083108912 instance=ExtResource("1_tbnjb")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7870582, 0, -1.6773009)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.7870582, 0, -1.6773009)
+
+[node name="parcours2" parent="." unique_id=887150872 instance=ExtResource("1_tbnjb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.6944442, 0, -1.6773009)
+
+[node name="parcours3" parent="." unique_id=1156527518 instance=ExtResource("1_tbnjb")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -1.6944442, 0, -1.7489557)
 
 [node name="PiCar-col" parent="." unique_id=568931496 instance=ExtResource("2_k67bo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010874748, 0.7884341, 2.089549)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84063655, 0.7884341, 1.1772716)
 
 [node name="PiCar#line_follower_sensor" parent="PiCar-col" unique_id=1023026082 instance=ExtResource("4_ylis6")]
 transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 0, -0.492, -2.053)
@@ -42,7 +48,7 @@ target_position = Vector3(0, -0.8, 0)
 hit_from_inside = true
 
 [node name="Bille" parent="." unique_id=1669035871 instance=ExtResource("3_ylis6")]
-transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, 0.03470182, 0.87611103, 0.68266964)
+transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, -0.7736909, 0.87611103, -0.2995818)
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=239054019]
 offset_left = 3.0
