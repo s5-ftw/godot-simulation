@@ -1,0 +1,116 @@
+[gd_scene format=3 uid="uid://vt8qbuux3ihd"]
+
+[ext_resource type="Script" uid="uid://tq58jihq45r4" path="res://scripts/main.gd" id="1_gpwvy"]
+[ext_resource type="PackedScene" uid="uid://dg5i7atiagb4e" path="res://assets/Prefabs/bille_physics.tscn" id="2_gpwvy"]
+[ext_resource type="PackedScene" uid="uid://46enj0k5f3" path="res://assets/Prefabs/pi_car_prefab_rear_axel.tscn" id="3_wp0kq"]
+[ext_resource type="PackedScene" uid="uid://xroxh5wjbwp6" path="res://line_follower_sensor.tscn" id="4_ikwgr"]
+[ext_resource type="PackedScene" uid="uid://cxwpn70o15wv8" path="res://assets/Prefabs/track_3_sussy_big.tscn" id="5_63v3l"]
+[ext_resource type="Script" uid="uid://cxnuwmawtxiuw" path="res://scripts/CamMove/FreeCamMove.gd" id="5_vlfw2"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_p336k"]
+sky_top_color = Color(0.635294, 0.756863, 0.901961, 1)
+sky_horizon_color = Color(0.839216, 0.890196, 0.929412, 1)
+ground_bottom_color = Color(0.580392, 0.737255, 0.796078, 1)
+ground_horizon_color = Color(0.686275, 0.815686, 0.890196, 1)
+
+[sub_resource type="Sky" id="Sky_tu3yc"]
+sky_material = SubResource("ProceduralSkyMaterial_p336k")
+
+[sub_resource type="Environment" id="Environment_e5i3v"]
+background_mode = 2
+sky = SubResource("Sky_tu3yc")
+
+[node name="Sussy" type="Node3D" unique_id=1981078358]
+script = ExtResource("1_gpwvy")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=736931955]
+environment = SubResource("Environment_e5i3v")
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=201556023]
+offset_left = 3.0
+offset_right = 320.0
+offset_bottom = 89.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+columns = 2
+
+[node name="CheckBox" type="CheckBox" parent="GridContainer" unique_id=4627640]
+layout_mode = 2
+text = "Localhost"
+
+[node name="lb_ConnectionStatusPackets" type="Label" parent="GridContainer" unique_id=942728729]
+layout_mode = 2
+text = "Disconnected"
+
+[node name="le_IpAdress" type="LineEdit" parent="GridContainer" unique_id=207007450]
+layout_mode = 2
+text = "127.0.0.1"
+placeholder_text = "192.168.13.XX"
+expand_to_text_length = true
+context_menu_enabled = false
+clear_button_enabled = true
+middle_mouse_paste_enabled = false
+virtual_keyboard_enabled = false
+
+[node name="btn_Connect" type="Button" parent="GridContainer" unique_id=387803668]
+layout_mode = 2
+text = "Connect"
+
+[node name="btn_Quit" type="Button" parent="GridContainer" unique_id=15038421]
+layout_mode = 2
+text = "Quit"
+
+[node name="btn_test" type="Button" parent="GridContainer" unique_id=1471339256]
+layout_mode = 2
+text = "Test"
+
+[node name="GridContainer" type="GridContainer" parent="GridContainer" unique_id=599812341]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="SceneMenu" type="OptionButton" parent="GridContainer" unique_id=740590759]
+layout_mode = 2
+
+[node name="FreeCamCheckBox" type="CheckButton" parent="GridContainer" unique_id=270620476]
+layout_mode = 2
+text = "FreeCam"
+
+[node name="Bille" parent="." unique_id=1669035871 instance=ExtResource("2_gpwvy")]
+transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, 0.056608558, 1.306908, 0.8007612)
+mass = 32.407
+
+[node name="DebugElementContainer" type="GridContainer" parent="." unique_id=1172566632]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -124.23779
+offset_bottom = 209.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="PiCar-col" parent="." unique_id=568931496 instance=ExtResource("3_wp0kq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04010749, 1.1684754, 2.219829)
+
+[node name="PiCar#line_follower_sensor" parent="PiCar-col" unique_id=1023026082 instance=ExtResource("4_ikwgr")]
+transform = Transform3D(1, 0, -1.0658141e-14, 0, 1, 0, 1.0658141e-14, 0, 1, 0, -0.492, -2.053)
+
+[node name="PiCar#Camera3D" type="Camera3D" parent="PiCar-col" unique_id=1180000438]
+transform = Transform3D(1, 0, 0, 0, 0.8295643, 0.5584113, 0, -0.5584113, 0.8295643, 0, 1.815, 1.127)
+current = true
+
+[node name="PiCar#RayCast3D" type="RayCast3D" parent="PiCar-col" unique_id=1952340156]
+transform = Transform3D(-7.3950796e-06, -4.371139e-08, -1, -1, 0, 7.39508e-06, 0, 1, -4.371139e-08, 0, -0.047, -1.878)
+target_position = Vector3(0, -0.8, 0)
+hit_from_inside = true
+
+[node name="FreeCam" type="Camera3D" parent="." unique_id=1900641976]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 4.159478, 2.5829535, 3.2318501)
+script = ExtResource("5_vlfw2")
+
+[node name="Track3" parent="." unique_id=2124145918 instance=ExtResource("5_63v3l")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, 0.14019299, 0, 0.1581142)
+
+[connection signal="item_selected" from="GridContainer/SceneMenu" to="." method="_on_scene_menu_item_selected"]
+[connection signal="toggled" from="GridContainer/FreeCamCheckBox" to="." method="_on_check_button_toggled"]
