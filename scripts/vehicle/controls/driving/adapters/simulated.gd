@@ -7,6 +7,10 @@ var throttle: float = 0.0
 var velocity: float = 0.0
 var old_velocity: float = 0.0
 
+# expose velocity through the base-class interface
+func get_velocity() -> float:
+	return velocity
+
 var max_force: float = 0
 var friction: float = 0
 var max_speed: float = 0

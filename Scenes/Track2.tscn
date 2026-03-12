@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://46enj0k5f3" path="res://assets/Prefabs/pi_car_prefab_rear_axel.tscn" id="2_k67bo"]
 [ext_resource type="PackedScene" uid="uid://dg5i7atiagb4e" path="res://assets/Prefabs/bille_physics.tscn" id="3_ylis6"]
 [ext_resource type="PackedScene" uid="uid://xroxh5wjbwp6" path="res://line_follower_sensor.tscn" id="4_ylis6"]
-[ext_resource type="PackedScene" uid="uid://c277gln5m82a0" path="res://assets/New_Track/Track2.blend" id="5_k8wn6"]
+[ext_resource type="Script" uid="uid://cxnuwmawtxiuw" path="res://scripts/CamMove/FreeCamMove.gd" id="6_sjk4e"]
+[ext_resource type="PackedScene" uid="uid://ct1voa4pkyp5d" path="res://assets/Prefabs/track_2.tscn" id="6_x31dh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ylis6"]
 sky_top_color = Color(0.635294, 0.756863, 0.901961, 1)
@@ -86,6 +87,10 @@ size_flags_vertical = 0
 [node name="SceneMenu" type="OptionButton" parent="GridContainer" unique_id=876887570]
 layout_mode = 2
 
+[node name="FreeCamCheckBox" type="CheckButton" parent="GridContainer" unique_id=514547478]
+layout_mode = 2
+text = "FreeCam"
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=118415301]
 environment = SubResource("Environment_d4x2x")
 
@@ -99,7 +104,11 @@ grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="Track2" parent="." unique_id=1014814658 instance=ExtResource("5_k8wn6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21, -0.205812, 0.024)
+[node name="FreeCam" type="Camera3D" parent="." unique_id=428910045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 4.159478, 2.5829535, 3.2318501)
+script = ExtResource("6_sjk4e")
+
+[node name="Track3" parent="." unique_id=1001141268 instance=ExtResource("6_x31dh")]
 
 [connection signal="item_selected" from="GridContainer/SceneMenu" to="." method="_on_scene_menu_item_selected"]
+[connection signal="toggled" from="GridContainer/FreeCamCheckBox" to="." method="_on_check_button_toggled"]
