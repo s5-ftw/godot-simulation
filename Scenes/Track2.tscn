@@ -1,11 +1,11 @@
-[gd_scene format=3 uid="uid://chdg7nl8sri4x"]
+[gd_scene format=3 uid="uid://b707phucqhc06"]
 
 [ext_resource type="Script" uid="uid://tq58jihq45r4" path="res://scripts/main.gd" id="1_k67bo"]
 [ext_resource type="PackedScene" uid="uid://46enj0k5f3" path="res://assets/Prefabs/pi_car_prefab_rear_axel.tscn" id="2_k67bo"]
 [ext_resource type="PackedScene" uid="uid://dg5i7atiagb4e" path="res://assets/Prefabs/bille_physics.tscn" id="3_ylis6"]
 [ext_resource type="PackedScene" uid="uid://xroxh5wjbwp6" path="res://line_follower_sensor.tscn" id="4_ylis6"]
 [ext_resource type="Script" uid="uid://cxnuwmawtxiuw" path="res://scripts/CamMove/FreeCamMove.gd" id="6_sjk4e"]
-[ext_resource type="PackedScene" uid="uid://ct1voa4pkyp5d" path="res://assets/Prefabs/track_2.tscn" id="6_x31dh"]
+[ext_resource type="PackedScene" uid="uid://s1ay5j81aaio" path="res://assets/Prefabs/track_2.tscn" id="6_x31dh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ylis6"]
 sky_top_color = Color(0.635294, 0.756863, 0.901961, 1)
@@ -19,6 +19,9 @@ sky_material = SubResource("ProceduralSkyMaterial_ylis6")
 [sub_resource type="Environment" id="Environment_d4x2x"]
 background_mode = 2
 sky = SubResource("Sky_nfout")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_sjk4e"]
+data = PackedVector3Array(-0.05, -0.05, 0.05, -0.05, -0.05, -0.05, -0.05, 0.05, -0.05, 0.05, -0.05, -0.05, -0.05, -0.05, -0.05, -0.05, -0.05, 0.05, -0.05, 0.05, -0.05, -0.05, -0.05, -0.05, 0.05, -0.05, -0.05, -0.05, 0.05, -0.05, -0.05, 0.05, 0.05, -0.05, -0.05, 0.05, -0.05, -0.05, 0.05, -0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, -0.05, 0.05, 0.05, -0.05, 0.05, -0.05, -0.05, -0.05, 0.05, 0.05, -0.05, 0.05, 0.05, -0.05, -0.05, 0.05, 0.05, 0.05, 0.05, -0.05, 0.05, -0.05, -0.05, 0.05, 0.05, -0.05, -0.05, 0.05, -0.05, 0.05, 0.05, 0.05, 0.05, 0.05, -0.05, -0.05, 0.05, 0.05, -0.05, -0.05, 0.05, -0.05, -0.05, 0.05, -0.05, 0.05, 0.05, -0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, 0.05, -0.05, 0.05, -0.05, -0.05)
 
 [node name="SimulationLineFollower" type="Node3D" unique_id=1660903673]
 script = ExtResource("1_k67bo")
@@ -109,6 +112,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 4.159478, 2.5829535,
 script = ExtResource("6_sjk4e")
 
 [node name="Track3" parent="." unique_id=1001141268 instance=ExtResource("6_x31dh")]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=308092734]
+transform = Transform3D(-4.371139e-08, 0, 14.988642, 0, 17.754208, 0, -1, 0, -6.5517435e-07, 18.340935, 0.6712519, -28.355484)
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="CSGBox3D" unique_id=1144903677]
+
+[node name="CSGBakedCollisionShape3D" type="CollisionShape3D" parent="CSGBox3D/StaticBody3D" unique_id=1634751540]
+shape = SubResource("ConcavePolygonShape3D_sjk4e")
 
 [connection signal="item_selected" from="GridContainer/SceneMenu" to="." method="_on_scene_menu_item_selected"]
 [connection signal="toggled" from="GridContainer/FreeCamCheckBox" to="." method="_on_check_button_toggled"]
