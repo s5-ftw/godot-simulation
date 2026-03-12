@@ -3,7 +3,7 @@ class_name LineFollowing
 # Controller parameters
 var Kp = 0.25
 var Kd = 0.08
-var max_speed = 0.6  # max forward speed
+var max_speed = 0.65  # max forward speed
 var min_speed = 0.1  # minimum speed when turning sharply
 
 # Keep track of last error for derivative
@@ -12,7 +12,7 @@ var adapters: VehicleAdapters
 
 var current_angle = 0
 var wanted_angle = 0
-var steering_speed = 0.4
+var steering_speed = 0.45
 
 func _init(
 	adapters: VehicleAdapters
@@ -51,7 +51,7 @@ func execute(delta):
 		
 	
 	# Scale speed down for sharp turns
-	var speed = max_speed * (1 - abs(steering * 0.2))
+	var speed = max_speed * (1 - abs(steering * 0.25))
 	
 	# Send to motors
 	adapters.driving.set_driving(speed)
