@@ -1,9 +1,9 @@
 class_name ObstacleDodge
 
 # Dodge parameters
-var dodge_speed = 0.7           # speed during dodge maneuver
+var dodge_speed = 0.6           # speed during dodge maneuver
 var dodge_steering_right = 0.8  # steering angle to go right
-var recovery_steering = -0.8    # steering to return to line
+var recovery_steering = -1    # steering to return to line
 var max_dodge_time = 5000.0        # max time to spend dodging (seconds)
 var backup_distance = 90
 
@@ -12,11 +12,11 @@ var initial_obstacle_distance = 0.0   # distance at moment dodge started
 var forward_target_distance = 0.0     # same as obstacle distance
 var initial_rotation_y = 0.0          # yaw when dodge begins
 var return_start_rotation_y = 0.0     # yaw when return turning begins
-var turn_angle = deg_to_rad(50)       # 50° angle for each turn
-var returning_angle = turn_angle + (turn_angle/2)
+var turn_angle = deg_to_rad(40)       # 50° angle for each turn
+var returning_angle = turn_angle + (turn_angle)
 var current_angle = 0
 var wanted_angle = 0
-var steping_angle = 0.1
+var steering_speed = 0.2
 
 # State tracking
 var state_timer = 0.0           # timer for state transitions
@@ -41,7 +41,8 @@ func execute_idle(delta, adapters: VehicleAdapters) -> bool:
 	
 func execute_turning_right(delta, adapters: VehicleAdapters) -> bool:
 	adapters.driving.set_driving(dodge_speed)
-	adapters.steering.set_steering(dodge_steering_right)
+	wanted_angle = dodge_steering_right
+	adapters.steering.set_steering(smooth_steering(delta, adapters))
 	state_timer += delta
 	
 	# check accumulated yaw relative to start
@@ -55,7 +56,8 @@ func execute_turning_right(delta, adapters: VehicleAdapters) -> bool:
 	
 func execute_going_forward(delta, adapters: VehicleAdapters) -> bool:
 	adapters.driving.set_driving(dodge_speed)
-	adapters.steering.set_steering(0)
+	wanted_angle = 0
+	adapters.steering.set_steering(smooth_steering(delta, adapters))
 	
 	distance_traveled += adapters.driving.get_velocity() * (delta + state_timer)
 	if distance_traveled >= forward_target_distance:
@@ -66,7 +68,8 @@ func execute_going_forward(delta, adapters: VehicleAdapters) -> bool:
 	
 func execute_returning(delta, adapters: VehicleAdapters) -> bool:
 	adapters.driving.set_driving(dodge_speed * 0.8)
-	adapters.steering.set_steering(recovery_steering)
+	wanted_angle = recovery_steering
+	adapters.steering.set_steering(smooth_steering(delta, adapters))
 	
 	# stop turning after left 50° from return start
 	var yaw_diff2 = return_start_rotation_y - _current_yaw(adapters)
@@ -74,6 +77,15 @@ func execute_returning(delta, adapters: VehicleAdapters) -> bool:
 	#print("[turn_angle] ", returning_angle)
 	if abs(yaw_diff2) >= abs(returning_angle):
 		adapters.steering.set_steering(0)
+		return true
+	return false
+	
+func execute_find_center_line(delta, adapters: VehicleAdapters) -> bool:
+	adapters.driving.set_driving(dodge_speed * 0.8)
+	wanted_angle = 0
+	adapters.steering.set_steering(smooth_steering(delta, adapters))
+	var sensor_value = adapters.line_sensor.read()
+	if(sensor_value & 0x04 == 0x04):
 		return true
 	return false
 
@@ -96,7 +108,8 @@ func reset_dodge(adapters: VehicleAdapters) -> void:
 	adapters.steering.set_steering(0.0)
 	print("[ObstacleDodge] Dodge maneuver complete, resuming line following")
 	
-func smooth_steering() -> void:
-	return
+func smooth_steering(delta: float, adapters: VehicleAdapters) -> float:
+	current_angle = move_toward(current_angle, wanted_angle, steering_speed * delta * (1-abs(adapters.driving.get_velocity())) )
+	return current_angle
 	
 	

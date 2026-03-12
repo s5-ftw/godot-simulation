@@ -29,10 +29,11 @@ func execute(delta):
 				dodge_state = "returning"
 		"returning":
 			if(dodge.execute_returning(delta, self.manager.adapters)):
-				dodge_state = "finished"
-		"finished":
-			dodge_state = "idle"
-			self.manager.set_state(FollowLineState)
+				dodge_state = "find_line"
+		"find_line":
+			if(dodge.execute_find_center_line(delta, self.manager.adapters)):
+				dodge_state = "idle"
+				self.manager.set_state(FollowLineState)
 
 ## Returns the name of the current state.
 func get_name() -> String:

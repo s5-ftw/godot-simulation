@@ -10,14 +10,20 @@ var min_speed = 0.1  # minimum speed when turning sharply
 var last_error = 0
 var adapters: VehicleAdapters
 
+var current_angle = 0
+var wanted_angle = 0
+var steering_speed = 0.4
+
 func _init(
 	adapters: VehicleAdapters
 ) -> void:
 	self.adapters = adapters
+	current_angle = adapters.steering.get_current()
+	wanted_angle = adapters.steering.get_current()
 
 func execute(delta):
 	var sensor_value = adapters.line_sensor.read()
-
+	
 	# Calculate error based on which sensors are active
 	var weights = [-4, -2, 0, 2, 4]
 	var error: float = 0.0
@@ -49,7 +55,12 @@ func execute(delta):
 	
 	# Send to motors
 	adapters.driving.set_driving(speed)
-	adapters.steering.set_steering(steering)
+	wanted_angle = steering
+	adapters.steering.set_steering(smooth_steering(delta, adapters))
 
 func lost_it() -> bool:
 	return self.adapters.line_sensor.read() == 0
+	
+func smooth_steering(delta: float, adapters: VehicleAdapters) -> float:
+	current_angle = move_toward(current_angle, wanted_angle, steering_speed * delta * (1-abs(adapters.driving.get_velocity())) )
+	return current_angle
