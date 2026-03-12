@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dg5i7atiagb4e" path="res://assets/Prefabs/bille_physics.tscn" id="3_ylis6"]
 [ext_resource type="PackedScene" uid="uid://xroxh5wjbwp6" path="res://line_follower_sensor.tscn" id="4_ylis6"]
 [ext_resource type="PackedScene" uid="uid://c277gln5m82a0" path="res://assets/New_Track/Track2.blend" id="5_k8wn6"]
+[ext_resource type="Script" uid="uid://cxnuwmawtxiuw" path="res://scripts/CamMove/FreeCamMove.gd" id="6_sjk4e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_ylis6"]
 sky_top_color = Color(0.635294, 0.756863, 0.901961, 1)
@@ -101,5 +102,9 @@ size_flags_vertical = 0
 
 [node name="Track2" parent="." unique_id=1014814658 instance=ExtResource("5_k8wn6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.21, -0.205812, 0.024)
+
+[node name="FreeCam" type="Camera3D" parent="." unique_id=428910045]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.99999994, 4.159478, 2.5829535, 3.2318501)
+script = ExtResource("6_sjk4e")
 
 [connection signal="item_selected" from="GridContainer/SceneMenu" to="." method="_on_scene_menu_item_selected"]

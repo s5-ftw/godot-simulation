@@ -28,6 +28,12 @@ func get_current() -> float:
 	push_error("get_current() must be implemented in the driving adapter")
 	return 0.0
 
+func get_velocity() -> float:
+	# default implementation returns 0 and logs an error so callers
+	# know the adapter doesn't support this property.
+	push_error("get_velocity() not implemented in this driving adapter")
+	return 0.0
+
 ## Sets the driving motors to a new value between -1 and 1.
 func set_driving(new: float) -> void:
 	push_error("set_driving() must be implemented in the driving adapter")
