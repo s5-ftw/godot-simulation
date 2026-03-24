@@ -134,8 +134,6 @@ shape = SubResource("ConcavePolygonShape3D_ngkjk")
 [node name="Bille" parent="." unique_id=1669035871 instance=ExtResource("7_ilb10")]
 transform = Transform3D(1, 0, -4.47035e-08, 0, 1, 0, 4.47035e-08, 0, 1, 1.8662875, 0.8253652, 2.3344536)
 mass = 32.407
-gravity_scale = 8.0
-linear_damp = 5.0
 
 [node name="DebugElementContainer" type="GridContainer" parent="." unique_id=517806483]
 anchors_preset = 1

@@ -1,7 +1,18 @@
 class_name NetworkFSMProcessState
 extends StateMachineState
 
+enum SOCKET_MESSAGE_TYPE {
+	GET_DISTANCE_SENSOR = 1,
+	GET_LINE_SENSOR = 2,
+	SET_STEERING_OUTPUT = 3,
+	SET_MOTOR_OUTPUT = 4
+}
+
 var test = 0
+var adapters: VehicleAdapters
+
+func _init(adapters: VehicleAdapters) -> void:
+	adapters = adapters
 
 func _input(event):
 	pass
@@ -27,15 +38,45 @@ func on_process(delta: float) -> void:
 
 		# Send current data to send JSON packet every 50ms ish
 		if test > 0.05:
-			var json_data = JSON.stringify(get_parent().data_to_send).to_utf8_buffer()
-			#print(json_data)
+			var json_data = send_information_json(SOCKET_MESSAGE_TYPE.SET_STEERING_OUTPUT).to_utf8_buffer()
+			print(json_data)
 			get_parent().socket.send(json_data)
+			
+			json_data = send_information_json(SOCKET_MESSAGE_TYPE.SET_MOTOR_OUTPUT).to_utf8_buffer()
+			print(json_data)
+			get_parent().socket.send(json_data)
+			
 			test = 0
 		else:
 			test += delta
 	elif state == WebSocketPeer.STATE_CLOSING || WebSocketPeer.STATE_CLOSING:
 		get_parent().current_state = $"../NetworkDisconnectingState"
 
+func send_information_json(info_to_send :SOCKET_MESSAGE_TYPE) -> String:
+	var data_sending
+	data_sending["function"] = info_to_send
+	
+	match info_to_send:
+		SOCKET_MESSAGE_TYPE.GET_DISTANCE_SENSOR:
+			print("Distance sensor")
+		SOCKET_MESSAGE_TYPE.GET_LINE_SENSOR:
+			print("Line sensor")
+		SOCKET_MESSAGE_TYPE.SET_STEERING_OUTPUT:
+			data_sending["arg"] = get_steering(adapters)
+			print("Steering output")
+		SOCKET_MESSAGE_TYPE.SET_MOTOR_OUTPUT:
+			data_sending["arg"] = get_speed(adapters)
+			print("Motor output")
+		_:
+			print("Unknown message")
+	return JSON.stringify(data_sending)
+
+
+func get_speed(adapters: VehicleAdapters) -> float:
+	return adapters.driving.get_velocity() 
+
+func get_steering(adapters: VehicleAdapters) -> float:
+	return adapters.steering.get_current()
 
 # Called every physics frame when this state is active.
 func on_physics_process(delta: float) -> void:
