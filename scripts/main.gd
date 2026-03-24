@@ -93,7 +93,7 @@ func _on_connect_pressed():
 
 func _on_check_box_toggled(toggled_on):
 	if toggled_on:
-		$GridContainer/le_IpAdress.text = "127.0.0.1"
+		$GridContainer/le_IpAdress.text = "10.42.1.1"
 		get_node("NetworkFSM").current_state = $NetworkFSM/NetworkInitState
 
 func _on_btn_test_pressed():
