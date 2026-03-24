@@ -38,13 +38,13 @@ func on_process(delta: float) -> void:
 
 		# Send current data to send JSON packet every 50ms ish
 		if test > 0.05:
-			var json_data = send_information_json(SOCKET_MESSAGE_TYPE.SET_STEERING_OUTPUT).to_utf8_buffer()
-			print(json_data)
-			get_parent().socket.send(json_data)
-			
-			json_data = send_information_json(SOCKET_MESSAGE_TYPE.SET_MOTOR_OUTPUT).to_utf8_buffer()
-			print(json_data)
-			get_parent().socket.send(json_data)
+			#var json_data = send_information_json(SOCKET_MESSAGE_TYPE.SET_STEERING_OUTPUT).to_utf8_buffer()
+			#print(json_data)
+			#get_parent().socket.send(json_data)
+			#
+			#json_data = send_information_json(SOCKET_MESSAGE_TYPE.SET_MOTOR_OUTPUT).to_utf8_buffer()
+			#print(json_data)
+			#get_parent().socket.send(json_data)
 			
 			test = 0
 		else:
